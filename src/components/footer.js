@@ -7,22 +7,18 @@ export default function(props) {
     return new Date().getFullYear();
   }
   return(
-    <div>
-      <footer className="bg-gray-800 md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
-         <ul className="flex justify-center flex-wrap mb-6 md:mb-0">
-            <li><a href="#" className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6">Terms and conditions</a></li>
-            <li><a href="#" className="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6">Privacy Policy</a></li>
-            <li><a href="https://arwildo.com" className="text-sm font-normal text-gray-500 hover:underline">Contact</a></li>
-         </ul>
-         <div className="flex justify-center space-x-6">
-            <a href="#" className="text-gray-500 hover:text-gray-900">
-               <img src={ Logo } className="h-6 mr-2" alt="TradeTul" />
-            </a>
-         </div>
-      </footer>
-      <p className="text-center text-sm text-gray-500 my-10">
+    <div className="flow-root m-6 inline">
+      <div className="flex-1">
+        <a href="#">
+          <p className="text-xs leading-6 font-medium text-gray-500">Terms Privacy Policy Cookies Contact
+          </p>
+        </a>
+      </div>
+      <div className="flex-2">
+        <p className="text-xs leading-6 font-medium text-gray-600">
          &copy; { getYear() } <a href="https://arwildo.com" className="hover:underline" target="_blank">Arwildo</a>. All rights reserved.
-      </p>
+        </p>
+      </div>
     </div>
   );
 }
