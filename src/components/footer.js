@@ -9,10 +9,20 @@ export default function(props) {
   return(
     <div className="flow-root m-6 inline">
       <div className="flex-1">
-        <a href="#">
-          <p className="text-xs leading-6 font-medium text-gray-500">Terms Privacy Policy Cookies Contact
-          </p>
-        </a>
+        <div className="flex">
+          <a href="/Terms">
+            <p className="text-xs leading-6 font-medium text-gray-500 mr-2">Terms</p>
+          </a>
+          <a href="/Privacy">
+            <p className="text-xs leading-6 font-medium text-gray-500 mr-2">Privacy</p>
+          </a>
+          <a href="Cookies">
+            <p className="text-xs leading-6 font-medium text-gray-500 mr-2">Cookies</p>
+          </a>
+          <a href="Contact">
+            <p className="text-xs leading-6 font-medium text-gray-500">Contact</p>
+          </a>
+        </div>
       </div>
       <div className="flex-2">
         <p className="text-xs leading-6 font-medium text-gray-600">
