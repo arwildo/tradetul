@@ -10,16 +10,16 @@ export default function(props) {
     <div className="flow-root m-6 inline">
       <div className="flex-1">
         <div className="flex">
-          <a href="/Terms">
+          <a href="/terms">
             <p className="text-xs leading-6 font-medium text-gray-500 mr-2">Terms</p>
           </a>
-          <a href="/Privacy">
+          <a href="/privacy">
             <p className="text-xs leading-6 font-medium text-gray-500 mr-2">Privacy</p>
           </a>
-          <a href="Cookies">
+          <a href="/cookies">
             <p className="text-xs leading-6 font-medium text-gray-500 mr-2">Cookies</p>
           </a>
-          <a href="Contact">
+          <a href="/contact">
             <p className="text-xs leading-6 font-medium text-gray-500">Contact</p>
           </a>
         </div>

@@ -125,10 +125,11 @@ export default function(props) {
                 </div>
               </div>
               <hr className="border-gray-800" />
-              <Footer />
             </div>
-
           </div>
+
+          <Footer />
+
         </div>
       </section>
     </div>
