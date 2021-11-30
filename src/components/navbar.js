@@ -5,7 +5,7 @@ import Logo from "../assets/img/tradetul.svg";
 export default function(props) {
   return(
     <header className="text-white h-12 py-4 h-auto">
-      <div className="w-60">
+      <div className="w-56 sm:w-60">
         <div className="overflow-y-auto fixed h-screen pr-3 w-60">
 
           <img src={ Logo } className="h-8 w-8 ml-3" alt="TradeTul" />
