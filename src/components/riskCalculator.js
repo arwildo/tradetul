@@ -23,7 +23,9 @@ export default function(props) {
               <div className="flex">
                 <div className="flex-1">
                   <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Account Amount</p>
-                  <input className="bg-dim-600 ml-6 pl-3 rounded h-9 text-white font-bold" placeHolder="1000"/>
+                  <div className="mx-5">
+                    <input className="bg-dim-600 w-full pl-3 rounded h-9 text-white font-bold" placeHolder="1000"/>
+                  </div>
                 </div>
               </div>
               <hr className="border-gray-800" />
@@ -32,7 +34,9 @@ export default function(props) {
               <div className="flex">
                 <div className="flex-1">
                   <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Risk (%)</p>
-                  <input className="bg-dim-600 ml-6 pl-3 rounded h-9 text-white font-bold" placeHolder="1%"/>
+                  <div className="mx-5">
+                    <input className="bg-dim-600 w-full pl-3 rounded h-9 text-white font-bold" placeHolder="1%"/>
+                  </div>
                 </div>
               </div>
               <hr className="border-gray-800" />
@@ -41,7 +45,9 @@ export default function(props) {
               <div className="flex">
                 <div className="flex-1">
                   <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Entry Price</p>
-                  <input className="bg-dim-600 ml-6 pl-3 rounded h-9 text-white font-bold" placeHolder="5"/>
+                  <div className="mx-5">
+                    <input className="bg-dim-600 w-full pl-3 rounded h-9 text-white font-bold" placeHolder="5"/>
+                  </div>
                 </div>
               </div>
               <hr className="border-gray-800" />
@@ -50,7 +56,9 @@ export default function(props) {
               <div className="flex">
                 <div className="flex-1">
                   <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Stop Loss Price</p>
-                  <input className="bg-dim-600 ml-6 pl-3 rounded h-9 text-white font-bold" placeHolder="4.8"/>
+                  <div className="mx-5">
+                    <input className="bg-dim-600 w-full pl-3 rounded h-9 text-white font-bold" placeHolder="4.8"/>
+                  </div>
                 </div>
               </div>
               <hr className="border-gray-800" />
