@@ -24,7 +24,7 @@ export default function(props) {
                 <div className="flex-1">
                   <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Account Amount</p>
                   <div className="mx-5">
-                    <input className="bg-dim-600 w-full pl-3 rounded h-9 text-white font-bold" placeHolder="1000"/>
+                    <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeHolder="1000"/>
                   </div>
                 </div>
               </div>
@@ -35,7 +35,7 @@ export default function(props) {
                 <div className="flex-1">
                   <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Risk (%)</p>
                   <div className="mx-5">
-                    <input className="bg-dim-600 w-full pl-3 rounded h-9 text-white font-bold" placeHolder="1%"/>
+                    <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeHolder="1%"/>
                   </div>
                 </div>
               </div>
@@ -46,7 +46,7 @@ export default function(props) {
                 <div className="flex-1">
                   <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Entry Price</p>
                   <div className="mx-5">
-                    <input className="bg-dim-600 w-full pl-3 rounded h-9 text-white font-bold" placeHolder="5"/>
+                    <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeHolder="5"/>
                   </div>
                 </div>
               </div>
@@ -57,7 +57,7 @@ export default function(props) {
                 <div className="flex-1">
                   <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Stop Loss Price</p>
                   <div className="mx-5">
-                    <input className="bg-dim-600 w-full pl-3 rounded h-9 text-white font-bold" placeHolder="4.8"/>
+                    <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeHolder="4.8"/>
                   </div>
                 </div>
               </div>
