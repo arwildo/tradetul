@@ -7,7 +7,7 @@ export default function(props) {
     return new Date().getFullYear();
   }
   return(
-    <div className="flow-root m-6 inline">
+    <div className="flow-root m-2 inline">
       <div className="flex-1">
         <div className="flex">
           <a href="/terms">

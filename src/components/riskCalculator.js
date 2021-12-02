@@ -22,8 +22,8 @@ export default function(props) {
              {/*<!--Section 1-->*/}
               <div className="flex">
                 <div className="flex-1">
-                  <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Size (units)</p>
-                  <h2 className="px-4 ml-2 w-48 font-bold text-white">50,000</h2>
+                  <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Account Amount</p>
+                  <input className="bg-dim-600 ml-6 pl-3 rounded h-9 text-white font-bold" placeHolder="1000"/>
                 </div>
               </div>
               <hr className="border-gray-800" />
@@ -31,8 +31,8 @@ export default function(props) {
              {/*<!--Section 2-->*/}
               <div className="flex">
                 <div className="flex-1">
-                  <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Value</p>
-                  <h2 className="px-4 ml-2 w-48 font-bold text-white">200 USD</h2>
+                  <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Risk (%)</p>
+                  <input className="bg-dim-600 ml-6 pl-3 rounded h-9 text-white font-bold" placeHolder="1%"/>
                 </div>
               </div>
               <hr className="border-gray-800" />
@@ -40,8 +40,8 @@ export default function(props) {
              {/*<!--Section 3-->*/}
               <div className="flex">
                 <div className="flex-1">
-                  <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Potential Lost</p>
-                  <h2 className="px-4 ml-2 w-48 font-bold text-white">10 USD</h2>
+                  <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Entry Price</p>
+                  <input className="bg-dim-600 ml-6 pl-3 rounded h-9 text-white font-bold" placeHolder="5"/>
                 </div>
               </div>
               <hr className="border-gray-800" />
@@ -49,18 +49,8 @@ export default function(props) {
              {/*<!--Section 4-->*/}
               <div className="flex">
                 <div className="flex-1">
-                  <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Potential Gain</p>
-                  <h2 className="px-4 ml-2 w-48 font-bold text-white">30 USD</h2>
-                </div>
-              </div>
-              <hr className="border-gray-800" />
-
-             {/*<!--Section 5-->*/}
-              <div className="flex">
-                <div className="flex-1">
-                  <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Reward Risk Ratio</p>
-                  <h2 className="px-4 ml-2 w-48 font-bold text-white">3</h2>
-                  <p className="px-4 ml-2 mb-3 w-48 text-xs text-gray-400">3:1 RR</p>
+                  <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Stop Loss Price</p>
+                  <input className="bg-dim-600 ml-6 pl-3 rounded h-9 text-white font-bold" placeHolder="4.8"/>
                 </div>
               </div>
               <hr className="border-gray-800" />
@@ -68,7 +58,7 @@ export default function(props) {
             </div>
           </div>
 
-          {/* Section One */}
+          {/* Section Two */}
           <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
             <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
               <div className="flex">
@@ -83,8 +73,8 @@ export default function(props) {
              {/*<!--Section 1-->*/}
               <div className="flex">
                 <div className="flex-1">
-                  <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Size (units)</p>
-                  <h2 className="px-4 ml-2 w-48 font-bold text-white">50,000</h2>
+                  <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Recom. Size (units)</p>
+                  <h2 className="px-4 ml-2 w-48 font-bold text-white">5.0</h2>
                 </div>
               </div>
               <hr className="border-gray-800" />
@@ -92,7 +82,7 @@ export default function(props) {
              {/*<!--Section 2-->*/}
               <div className="flex">
                 <div className="flex-1">
-                  <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Value</p>
+                  <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Size</p>
                   <h2 className="px-4 ml-2 w-48 font-bold text-white">200 USD</h2>
                 </div>
               </div>
@@ -101,8 +91,8 @@ export default function(props) {
              {/*<!--Section 3-->*/}
               <div className="flex">
                 <div className="flex-1">
-                  <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Potential Lost</p>
-                  <h2 className="px-4 ml-2 w-48 font-bold text-white">10 USD</h2>
+                  <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risked / Share</p>
+                  <h2 className="px-4 ml-2 w-48 font-bold text-white">2 USD</h2>
                 </div>
               </div>
               <hr className="border-gray-800" />
@@ -110,13 +100,22 @@ export default function(props) {
              {/*<!--Section 4-->*/}
               <div className="flex">
                 <div className="flex-1">
-                  <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Potential Gain</p>
-                  <h2 className="px-4 ml-2 w-48 font-bold text-white">30 USD</h2>
+                  <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risked / Pos</p>
+                  <h2 className="px-4 ml-2 w-48 font-bold text-white">5%</h2>
                 </div>
               </div>
               <hr className="border-gray-800" />
 
              {/*<!--Section 5-->*/}
+              <div className="flex">
+                <div className="flex-1">
+                  <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risked / Pos</p>
+                  <h2 className="px-4 ml-2 w-48 font-bold text-white">10 USD</h2>
+                </div>
+              </div>
+              <hr className="border-gray-800" />
+
+             {/*<!--Section 6-->*/}
               <div className="flex">
                 <div className="flex-1">
                   <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Reward Risk Ratio</p>
