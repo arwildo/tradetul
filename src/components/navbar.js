@@ -43,7 +43,7 @@ export default function(props) {
               <span className="invisible sm:visible">
                 More
               </span>
-              <div className="ml-2 py-1 px-2 bg-blue-400 rounded-full text-xs invisible sm:visible">Coming Soon</div>
+              <div className="comingSoon ml-2 px-2 bg-blue-400 rounded-full invisible sm:visible">Coming Soon</div>
             </a>
           </nav>
 

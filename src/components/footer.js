@@ -26,7 +26,7 @@ export default function(props) {
       </div>
       <div className="flex-2">
         <p className="text-xs leading-6 font-medium text-gray-600">
-         &copy; { getYear() } <a href="https://arwildo.com" className="hover:underline" target="_blank">Arwildo</a>. All rights reserved.
+         &copy; { getYear() } <a href="https://arwildo.com" className="hover:underline" target="_blank">Arwildo</a>. Built for dYdX Competition.
         </p>
       </div>
     </div>

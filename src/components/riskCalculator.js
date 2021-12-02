@@ -55,6 +55,12 @@ export default function(props) {
               </div>
               <hr className="border-gray-800" />
 
+              <div className="m-6">
+                <button className="bg-blue-400 hover:bg-blue-500 w-36 text-white font-bold py-2 px-4 rounded-full">
+                  Enter
+                </button>
+              </div>
+
             </div>
           </div>
 
