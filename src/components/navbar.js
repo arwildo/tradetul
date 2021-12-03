@@ -27,15 +27,17 @@ export default function(props) {
                 Trading Calculator
               </span>
             </a>
+            {/* Fear Greed Index
             <a href="#" className="mt-1 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-full hover:bg-gray-800 hover:text-blue-300">
               <svg className="mr-4 h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
               </svg>
               <span className="invisible sm:visible">
-                Fear Gread Index
+                Fear Greed Index
               </span>
             </a>
+            */}
             <a href="#" className="mt-1 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-full hover:bg-gray-800">
               <svg className="mr-4 h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -43,7 +45,7 @@ export default function(props) {
               <span className="invisible sm:visible">
                 More
               </span>
-              <div className="comingSoon ml-2 px-2 border border-blue-400 rounded-full invisible sm:visible">Coming Soon</div>
+              <div className="textSmall ml-2 px-2 border border-blue-400 rounded-full invisible sm:visible">Coming Soon</div>
             </a>
           </nav>
 

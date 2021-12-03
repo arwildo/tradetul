@@ -2,18 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import './style.css';
 
-import Navbar from "./components/navbar";
-import RiskCalculator from "./components/riskCalculator";
-
 const Index = () => {
+  function calculate() {
+    return 0.5;
+  }
   return (
-    <div className="relative h-screen">
-      <div className="flex justify-center">
-        <Navbar key="navbar" />
-        <RiskCalculator key="risk_calculator" />
-      </div>
+    <div className="text-gray-400 text-xl m-10">
+      {calculate()}
     </div>
   );
 }
+
+
+
 
 ReactDOM.render(<Index />, document.getElementById("root"));
