@@ -6,196 +6,241 @@ class TradingCalculator extends React.Component {
     super();
 
     this.state = {
-      capital: "1000",
-      risk: "2",
-      direction: "Long",
-      price: "25",
-      stoploss: "24"
+      capital: 1000,
+      risk: 2,
+      direction: "long",
+      price: 25,
+      stoploss: 24,
+      unitsToBuy: 20,
+      total: 500,
+      totalTolerableRiskPerTrade: 20,
+      stopLossPerUnitLoss: 1,
+      stopLossTotalLoss: 20
     }
+    this.handleChangeCapital = this.handleChangeCapital.bind(this);
+    this.handleChangeRisk = this.handleChangeRisk.bind(this);
+    this.handleChangeDirection = this.handleChangeDirection.bind(this);
+    this.handleChangePrice = this.handleChangePrice.bind(this);
+    this.handleChangeStopLoss = this.handleChangeStopLoss.bind(this);
 
-    this.calculate = this.calculator.bind(this);
+    this.handleCalculate = this.handleCalculate.bind(this);
   }
 
-  // TradingCalculator Engine
-  calculator() {
-    var calculator = {};
+  // Capital
+  handleChangeCapital(event) {
+    this.setState({capital: event.target.value});
+  }
+  // Risk
+  handleChangeRisk(event) {
+    this.setState({risk: event.target.value});
+  }
+  // Direction
+  handleChangeDirection(event) {
+    this.setState({Direction: event.target.value});
+  }
+  // Price
+  handleChangePrice(event) {
+    this.setState({price: event.target.value});
+  }
+  // Stop Loss
+  handleChangeStopLoss(event) {
+    this.setState({stoploss: event.target.value});
+  }
 
-    var PositiveSignum = function (verify) {
-        if (!verify ||
-            isNaN(verify) ||
-            typeof verify !== 'number' ||
-            verify < 0 ||
-            verify === 0 || !isFinite(verify)) {
-            throw new TypeError('All numbers must have positive signum');
-        }
-        this.verified = verify;
-    };
+  // Calculate Handler
+  handleCalculate() {
+    // TradingCalculator Engine
+    function calculator() {
+      var calculator = {};
 
-    PositiveSignum.prototype.provide = function () {
-        return this.verified;
-    };
+      var PositiveSignum = function (verify) {
+          if (!verify ||
+              isNaN(verify) ||
+              typeof verify !== 'number' ||
+              verify < 0 ||
+              verify === 0 || !isFinite(verify)) {
+              throw new TypeError('All numbers must have positive signum');
+          }
+          this.verified = verify;
+      };
 
-    var Capital = function (verify) {
-        this.verified = new PositiveSignum(verify).provide();
-    };
+      PositiveSignum.prototype.provide = function () {
+          return this.verified;
+      };
 
-    Capital.prototype.provide = function () {
-        return this.verified;
-    };
+      var Capital = function (verify) {
+          this.verified = new PositiveSignum(verify).provide();
+      };
 
-    var PricePerUnit = function (verify) {
-        this.verified = new PositiveSignum(verify).provide();
-    };
+      Capital.prototype.provide = function () {
+          return this.verified;
+      };
 
-    PricePerUnit.prototype.provide = function () {
-        return this.verified;
-    };
+      var PricePerUnit = function (verify) {
+          this.verified = new PositiveSignum(verify).provide();
+      };
 
-    var StopLossPricePerUnit = function (verify) {
-        this.verified = new PositiveSignum(verify).provide();
-    };
+      PricePerUnit.prototype.provide = function () {
+          return this.verified;
+      };
 
-    StopLossPricePerUnit.prototype.provide = function () {
-        return this.verified;
-    };
+      var StopLossPricePerUnit = function (verify) {
+          this.verified = new PositiveSignum(verify).provide();
+      };
 
-    var Below = function (verify) {
-        if (!(new PositiveSignum(verify).provide() < 100)) {
-            throw new TypeError('Tolerable risk in percent of capital per trade must be less than 100');
-        }
-        this.verified = verify;
-    };
+      StopLossPricePerUnit.prototype.provide = function () {
+          return this.verified;
+      };
 
-    Below.prototype.provide = function () {
-        return this.verified;
-    };
+      var Below = function (verify) {
+          if (!(new PositiveSignum(verify).provide() < 100)) {
+              throw new TypeError('Tolerable risk in percent of capital per trade must be less than 100');
+          }
+          this.verified = verify;
+      };
 
-    var TolerableRiskInPercentOfCapital = function (verify) {
-        this.verified = new Below(verify).provide();
-    };
+      Below.prototype.provide = function () {
+          return this.verified;
+      };
 
-    TolerableRiskInPercentOfCapital.prototype.provide = function () {
-        return this.verified;
-    };
+      var TolerableRiskInPercentOfCapital = function (verify) {
+          this.verified = new Below(verify).provide();
+      };
 
-    var Position = function (capital,
-                             tolerableRiskInPercentOfCapital,
-                             pricePerUnit,
-                             stopLossPricePerUnit) {
-        this.capital = capital;
-        this.tolerableRiskInPercentOfCapital = tolerableRiskInPercentOfCapital;
-        this.pricePerUnit = pricePerUnit;
-        this.stopLossPricePerUnit = stopLossPricePerUnit;
-    };
+      TolerableRiskInPercentOfCapital.prototype.provide = function () {
+          return this.verified;
+      };
 
-    Position.prototype.getTotalTolerableRiskPerTrade = function () {
-        return (this.capital.provide() * (this.tolerableRiskInPercentOfCapital.provide() / 100)).toFixed(2);
-    };
-
-    Position.prototype.getStopLossPerUnitLoss = function () {
-
-    };
-
-    Position.prototype.getStopLossTotalLoss = function () {
-        return (this.getStopLossPerUnitLoss() * this.getUnitsToBuy()).toFixed(2);
-    };
-
-    Position.prototype.getUnitsToBuy = function () {
-        var result = Math.floor((this.getTotalTolerableRiskPerTrade() / this.getStopLossPerUnitLoss()));
-        if (this.capital.provide() <= (result * this.pricePerUnit.provide())) {
-            return 0;
-        } else {
-            return result;
-        }
-    };
-
-    Position.prototype.getTotal = function () {
-        return (this.getUnitsToBuy() * this.getPricePerUnit()).toFixed(2);
-    };
-
-    Position.prototype.getPricePerUnit = function () {
-        return this.pricePerUnit.provide();
-    };
-
-    function Long(capital,
-                  tolerableRiskInPercentOfCapital,
-                  pricePerUnit,
-                  stopLossPricePerUnit) {
-        if (pricePerUnit.provide() <= stopLossPricePerUnit.provide()) {
-            throw new TypeError('Stop loss price per unit must be lower than price per unit when long');
-        }
-        Position.call(this,
-            capital,
-            tolerableRiskInPercentOfCapital,
-            pricePerUnit,
-            stopLossPricePerUnit);
-
-    }
-
-    Long.prototype = Object.create(Position.prototype);
-    Long.prototype.constructor = Position;
-    Long.prototype.getStopLossPerUnitLoss = function () {
-        return (this.pricePerUnit.provide() - this.stopLossPricePerUnit.provide()).toFixed(2);
-    };
-
-    function Short(capital,
-                   tolerableRiskInPercentOfCapital,
-                   pricePerUnit,
-                   stopLossPricePerUnit) {
-        if (pricePerUnit.provide() >= stopLossPricePerUnit.provide()) {
-            throw new TypeError('Stop loss price per unit must be higher than price per unit when short');
-        }
-        Position.call(this,
-            capital,
-            tolerableRiskInPercentOfCapital,
-            pricePerUnit,
-            stopLossPricePerUnit);
-
-    }
-
-    Short.prototype = Object.create(Position.prototype);
-    Short.prototype.constructor = Position;
-    Short.prototype.getStopLossPerUnitLoss = function () {
-        return (this.stopLossPricePerUnit.provide() - this.pricePerUnit.provide()).toFixed(2);
-    };
-
-    var validateDirection = function(direction){
-        if (!direction) {
-            throw new TypeError('direction must not be falsey');
-        }
-        if (typeof direction !== 'string' || !direction instanceof String) {
-            throw new TypeError('direction must be a string');
-        }
-        if (!(direction.toLowerCase() === 'long' || direction.toLowerCase() === 'short')) {
-            throw new TypeError('direction must be either long or short');
-        }
-    };
-
-    calculator.calculate = function (capital,
-                               tolerableRiskInPercentOfCapitalPerTrade,
-                               direction,
+      var Position = function (capital,
+                               tolerableRiskInPercentOfCapital,
                                pricePerUnit,
                                stopLossPricePerUnit) {
-        validateDirection(direction);
-        if (direction.toLowerCase() === 'long') {
-            return new Long(
-                new Capital(capital),
-                new TolerableRiskInPercentOfCapital(tolerableRiskInPercentOfCapitalPerTrade),
-                new PricePerUnit(pricePerUnit),
-                new StopLossPricePerUnit(stopLossPricePerUnit)
-            );
-        } else {
-            return new Short(
-                new Capital(capital),
-                new TolerableRiskInPercentOfCapital(tolerableRiskInPercentOfCapitalPerTrade),
-                new PricePerUnit(pricePerUnit),
-                new StopLossPricePerUnit(stopLossPricePerUnit)
-            );
-        }
+          this.capital = capital;
+          this.tolerableRiskInPercentOfCapital = tolerableRiskInPercentOfCapital;
+          this.pricePerUnit = pricePerUnit;
+          this.stopLossPricePerUnit = stopLossPricePerUnit;
+      };
+
+      Position.prototype.getTotalTolerableRiskPerTrade = function () {
+          return (this.capital.provide() * (this.tolerableRiskInPercentOfCapital.provide() / 100)).toFixed(2);
+      };
+
+      Position.prototype.getStopLossPerUnitLoss = function () {
+
+      };
+
+      Position.prototype.getStopLossTotalLoss = function () {
+          return (this.getStopLossPerUnitLoss() * this.getUnitsToBuy()).toFixed(2);
+      };
+
+      Position.prototype.getUnitsToBuy = function () {
+          var result = Math.floor((this.getTotalTolerableRiskPerTrade() / this.getStopLossPerUnitLoss()));
+          if (this.capital.provide() <= (result * this.pricePerUnit.provide())) {
+              return 0;
+          } else {
+              return result;
+          }
+      };
+
+      Position.prototype.getTotal = function () {
+          return (this.getUnitsToBuy() * this.getPricePerUnit()).toFixed(2);
+      };
+
+      Position.prototype.getPricePerUnit = function () {
+          return this.pricePerUnit.provide();
+      };
+
+      function Long(capital,
+                    tolerableRiskInPercentOfCapital,
+                    pricePerUnit,
+                    stopLossPricePerUnit) {
+          if (pricePerUnit.provide() <= stopLossPricePerUnit.provide()) {
+              throw new TypeError('Stop loss price per unit must be lower than price per unit when long');
+          }
+          Position.call(this,
+              capital,
+              tolerableRiskInPercentOfCapital,
+              pricePerUnit,
+              stopLossPricePerUnit);
+
+      }
+
+      Long.prototype = Object.create(Position.prototype);
+      Long.prototype.constructor = Position;
+      Long.prototype.getStopLossPerUnitLoss = function () {
+          return (this.pricePerUnit.provide() - this.stopLossPricePerUnit.provide()).toFixed(2);
+      };
+
+      function Short(capital,
+                     tolerableRiskInPercentOfCapital,
+                     pricePerUnit,
+                     stopLossPricePerUnit) {
+          if (pricePerUnit.provide() >= stopLossPricePerUnit.provide()) {
+              throw new TypeError('Stop loss price per unit must be higher than price per unit when short');
+          }
+          Position.call(this,
+              capital,
+              tolerableRiskInPercentOfCapital,
+              pricePerUnit,
+              stopLossPricePerUnit);
+
+      }
+
+      Short.prototype = Object.create(Position.prototype);
+      Short.prototype.constructor = Position;
+      Short.prototype.getStopLossPerUnitLoss = function () {
+          return (this.stopLossPricePerUnit.provide() - this.pricePerUnit.provide()).toFixed(2);
+      };
+
+      var validateDirection = function(direction){
+          if (!direction) {
+              throw new TypeError('direction must not be falsey');
+          }
+          if (typeof direction !== 'string' || !direction instanceof String) {
+              throw new TypeError('direction must be a string');
+          }
+          if (!(direction.toLowerCase() === 'long' || direction.toLowerCase() === 'short')) {
+              throw new TypeError('direction must be either long or short');
+          }
+      };
+
+      calculator.calculate = function (capital,
+                                 tolerableRiskInPercentOfCapitalPerTrade,
+                                 direction,
+                                 pricePerUnit,
+                                 stopLossPricePerUnit) {
+          validateDirection(direction);
+          if (direction.toLowerCase() === 'long') {
+              return new Long(
+                  new Capital(capital),
+                  new TolerableRiskInPercentOfCapital(tolerableRiskInPercentOfCapitalPerTrade),
+                  new PricePerUnit(pricePerUnit),
+                  new StopLossPricePerUnit(stopLossPricePerUnit)
+              );
+          } else {
+              return new Short(
+                  new Capital(capital),
+                  new TolerableRiskInPercentOfCapital(tolerableRiskInPercentOfCapitalPerTrade),
+                  new PricePerUnit(pricePerUnit),
+                  new StopLossPricePerUnit(stopLossPricePerUnit)
+              );
+          }
+      };
+
+      return calculator;
     };
 
-    return calculator;
-  };
+    let position = calculator().calculate(parseInt(this.state.capital), parseInt(this.state.risk), this.state.direction, parseInt(this.state.price), parseInt(this.state.stoploss));
+    
+    // Inputs to Calculator
+    this.setState({
+      unitsToBuy: position.getUnitsToBuy(),
+      total: position.getTotal(),
+      totalTolerableRiskPerTrade: position.getTotalTolerableRiskPerTrade(),
+      stopLossPerUnitLoss: position.getStopLossPerUnitLoss(),
+      stopLossTotalLoss: position.getStopLossTotalLoss()
+    })
+  }
 
   render() {
     return(
@@ -203,7 +248,7 @@ class TradingCalculator extends React.Component {
         <section className="max-w-6xl mx-auto p-2">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-            <form onSubmit={this.calculate}>
+            <form>
 
               {/* Section One */}
               <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
@@ -218,11 +263,11 @@ class TradingCalculator extends React.Component {
                   <hr className="border-gray-800"/>
 
                   {/* Long and Short */}
-                  <div className="mx-5 my-2">
-                    <button className="text-sm bg-dim-600 w-1/2 text-green-500 py-2 rounded-l-lg border-2 border-green-500">
+                  <div className="mx-5 my-2 bg-dim-600">
+                    <button className="text-sm bg-dim-600 w-1/2 text-green-500 py-2 rounded-lg border-2 border-green-500">
                       Buy
                     </button>
-                    <button className="text-sm bg-dim-600 w-1/2 text-white py-2 rounded-r-lg">
+                    <button className="text-sm bg-dim-600 w-1/2 text-white py-2 rounded-lg">
                       Sell
                     </button>
                   </div>
@@ -233,7 +278,7 @@ class TradingCalculator extends React.Component {
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Account Amount <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <div className="mx-5">
-                        <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="1000"/>
+                        <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="1000" value={this.state.capital} onChange={this.handleChangeCapital}/>
                       </div>
                     </div>
                   </div>
@@ -244,7 +289,7 @@ class TradingCalculator extends React.Component {
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Risk <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
                       <div className="mx-5">
-                        <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="1%"/>
+                        <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="1%" value={this.state.risk} onChange={this.handleChangeRisk}/>
                       </div>
                     </div>
                   </div>
@@ -255,7 +300,7 @@ class TradingCalculator extends React.Component {
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Entry Price <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <div className="mx-5">
-                        <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="5"/>
+                        <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="5" value={this.state.price} onChange={this.handleChangePrice}/>
                       </div>
                     </div>
                   </div>
@@ -266,16 +311,14 @@ class TradingCalculator extends React.Component {
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Stop Loss Price <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <div className="mx-5">
-                        <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="4.8"/>
+                        <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="4.8" value={this.state.stoploss} onChange={this.handleChangeStopLoss}/>
                       </div>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
 
                   <div className="m-5">
-                    <button type="submit" value="submit" className="bg-blue-400 hover:bg-blue-500 w-full text-white font-bold py-2 px-4 rounded-full">
-                      Enter
-                    </button>
+                    <input type="button" value="Enter" className="bg-blue-400 hover:bg-blue-500 w-full text-white font-bold py-2 px-4 rounded-full" onClick={this.handleCalculate}/>
                   </div>
 
                 </div>
@@ -301,7 +344,7 @@ class TradingCalculator extends React.Component {
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Size <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">Units</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.capital}</h2>
+                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.unitsToBuy}</h2>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -311,7 +354,7 @@ class TradingCalculator extends React.Component {
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Size <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.risk}</h2>
+                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.total}</h2>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -326,7 +369,7 @@ class TradingCalculator extends React.Component {
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Stop Loss / Unit Loss</p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.direction}</h2>
+                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.stopLossPerUnitLoss}</h2>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -336,7 +379,7 @@ class TradingCalculator extends React.Component {
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risking Amount <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.price}</h2>
+                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.stopLossTotalLoss}</h2>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -350,7 +393,7 @@ class TradingCalculator extends React.Component {
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Total Torelable Risk / Trade</p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.stoploss}</h2>
+                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.totalTolerableRiskPerTrade}</h2>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
