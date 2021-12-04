@@ -215,13 +215,23 @@ class TradingCalculator extends React.Component {
                     </div>
                   </div>
 
-
                   <hr className="border-gray-800"/>
+
+                  {/* Long and Short */}
+                  <div className="mx-5 my-2">
+                    <button className="text-sm bg-dim-600 w-1/2 text-green-500 py-2 rounded-l-lg border-2 border-green-500">
+                      Buy
+                    </button>
+                    <button className="text-sm bg-dim-600 w-1/2 text-white py-2 rounded-r-lg">
+                      Sell
+                    </button>
+                  </div>
+                  <hr className="border-gray-800" />
 
                  {/*<!--Section 1-->*/}
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Account Amount</p>
+                      <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Account Amount <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <div className="mx-5">
                         <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="1000"/>
                       </div>
@@ -232,7 +242,7 @@ class TradingCalculator extends React.Component {
                  {/*<!--Section 2-->*/}
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Risk (%)</p>
+                      <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Risk <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
                       <div className="mx-5">
                         <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="1%"/>
                       </div>
@@ -243,7 +253,7 @@ class TradingCalculator extends React.Component {
                  {/*<!--Section 3-->*/}
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Entry Price</p>
+                      <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Entry Price <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <div className="mx-5">
                         <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="5"/>
                       </div>
@@ -254,7 +264,7 @@ class TradingCalculator extends React.Component {
                  {/*<!--Section 4-->*/}
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Stop Loss Price</p>
+                      <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Stop Loss Price <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <div className="mx-5">
                         <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="4.8"/>
                       </div>
@@ -290,7 +300,7 @@ class TradingCalculator extends React.Component {
                 <div>
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Recommend Position Size</p>
+                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Size <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">Units</span></p>
                       <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.capital}</h2>
                     </div>
                   </div>
@@ -300,8 +310,8 @@ class TradingCalculator extends React.Component {
                 <div>
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Size <span className="textSmall ml-1 px-2 w-10 border border-blue-400 rounded-full">USD</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.risk} USD</h2>
+                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Size <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
+                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.risk}</h2>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -325,7 +335,7 @@ class TradingCalculator extends React.Component {
                 <div>
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risking Amount <span className="textSmall ml-1 px-2 w-10 border border-blue-400 rounded-full">USD</span></p>
+                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risking Amount <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.price}</h2>
                     </div>
                   </div>
