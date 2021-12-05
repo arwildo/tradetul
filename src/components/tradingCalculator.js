@@ -36,7 +36,8 @@ class TradingCalculator extends React.Component {
   }
   // Direction
   handleChangeDirection(event) {
-    this.setState({Direction: event.target.value});
+    event.preventDefault();
+    this.setState({direction: event.target.value});
   }
   // Price
   handleChangePrice(event) {
@@ -150,7 +151,7 @@ class TradingCalculator extends React.Component {
           return this.pricePerUnit.provide();
       };
 
-      function Long(capital,
+      function long(capital,
                     tolerableRiskInPercentOfCapital,
                     pricePerUnit,
                     stopLossPricePerUnit) {
@@ -165,13 +166,13 @@ class TradingCalculator extends React.Component {
 
       }
 
-      Long.prototype = Object.create(Position.prototype);
-      Long.prototype.constructor = Position;
-      Long.prototype.getStopLossPerUnitLoss = function () {
+      long.prototype = Object.create(Position.prototype);
+      long.prototype.constructor = Position;
+      long.prototype.getStopLossPerUnitLoss = function () {
           return (this.pricePerUnit.provide() - this.stopLossPricePerUnit.provide()).toFixed(2);
       };
 
-      function Short(capital,
+      function short(capital,
                      tolerableRiskInPercentOfCapital,
                      pricePerUnit,
                      stopLossPricePerUnit) {
@@ -186,9 +187,9 @@ class TradingCalculator extends React.Component {
 
       }
 
-      Short.prototype = Object.create(Position.prototype);
-      Short.prototype.constructor = Position;
-      Short.prototype.getStopLossPerUnitLoss = function () {
+      short.prototype = Object.create(Position.prototype);
+      short.prototype.constructor = Position;
+      short.prototype.getStopLossPerUnitLoss = function () {
           return (this.stopLossPricePerUnit.provide() - this.pricePerUnit.provide()).toFixed(2);
       };
 
@@ -211,14 +212,14 @@ class TradingCalculator extends React.Component {
                                  stopLossPricePerUnit) {
           validateDirection(direction);
           if (direction.toLowerCase() === 'long') {
-              return new Long(
+              return new long(
                   new Capital(capital),
                   new TolerableRiskInPercentOfCapital(tolerableRiskInPercentOfCapitalPerTrade),
                   new PricePerUnit(pricePerUnit),
                   new StopLossPricePerUnit(stopLossPricePerUnit)
               );
           } else {
-              return new Short(
+              return new short(
                   new Capital(capital),
                   new TolerableRiskInPercentOfCapital(tolerableRiskInPercentOfCapitalPerTrade),
                   new PricePerUnit(pricePerUnit),
@@ -262,16 +263,31 @@ class TradingCalculator extends React.Component {
 
                   <hr className="border-gray-800"/>
 
-                  {/* Long and Short */}
-                  <div className="mx-5 my-2 bg-dim-600">
-                    <button className="text-sm bg-dim-600 w-1/2 text-green-500 py-2 rounded-lg border-2 border-green-500">
-                      Buy
-                    </button>
-                    <button className="text-sm bg-dim-600 w-1/2 text-white py-2 rounded-lg">
-                      Sell
-                    </button>
-                  </div>
-                  <hr className="border-gray-800" />
+                  {/* long and short */}
+                  { this.state.direction === "long" ?
+                    <>
+                      <div className="mx-5 my-2 bg-dim-600">
+                        <button className="text-sm font-bold bg-dim-600 w-1/2 text-green-500 text-center py-2 rounded-lg border-2 border-green-500" value="long" onClick={(event) => {this.handleChangeDirection(event)}} readOnly>
+                          Buy
+                        </button>
+                        <button className="text-sm font-bold bg-dim-600 w-1/2 text-white text-center py-2 rounded-lg" value="short" onClick={this.handleChangeDirection} onClick={(event) => {this.handleChangeDirection(event)}} readOnly>
+                          Sell
+                        </button>
+                      </div>
+                      <hr className="border-gray-800" />
+                    </> :
+                    <>
+                      <div className="mx-5 my-2 bg-dim-600">
+                        <button className="text-sm font-bold bg-dim-600 w-1/2 text-white text-center py-2 rounded-lg" value="long" onClick={this.handleChangeDirection} onClick={(event) => {this.handleChangeDirection(event)}} readOnly>
+                          Buy
+                        </button>
+                        <button className="text-sm font-bold bg-dim-600 w-1/2 text-red-400 text-center py-2 rounded-lg border-2 border-red-400" value="short" onClick={this.handleChangeDirection} onClick={(event) => {this.handleChangeDirection(event)}} readOnly>
+                          Sell
+                        </button>
+                      </div>
+                      <hr className="border-gray-800" />
+                    </>
+                  }
 
                  {/*<!--Section 1-->*/}
                   <div className="flex">
@@ -318,7 +334,7 @@ class TradingCalculator extends React.Component {
                   <hr className="border-gray-800" />
 
                   <div className="m-5">
-                    <input type="button" value="Enter" className="bg-blue-400 hover:bg-blue-500 w-full text-white font-bold py-2 px-4 rounded-full" onClick={this.handleCalculate}/>
+                    <input type="button" value="Enter" className="bg-blue-400 hover:bg-blue-500 w-full text-white font-bold py-2 px-4 rounded-full cursor-pointer" onClick={this.handleCalculate}/>
                   </div>
 
                 </div>
