@@ -36,6 +36,7 @@ class TradingCalculator extends React.Component {
   // Risk
   handleChangeRisk(event) {
     this.setState({risk: event.target.value});
+
     if (event.target.value < 100) {
       this.setState({hasError : false});
     } else {
@@ -55,6 +56,22 @@ class TradingCalculator extends React.Component {
   // Stop Loss
   handleChangeStopLoss(event) {
     this.setState({stoploss: event.target.value});
+
+    if (this.state.direction == "long") {
+      if (event.target.value < this.state.price) {
+        this.setState({hasError : false});
+      } else {
+        this.setState({hasError : true});
+        this.setState({errorInfo : "For buy trade stop loss must be lower than entry price."});
+      }
+    } else {
+      if (event.target.value > this.state.price) {
+        this.setState({hasError : false});
+      } else {
+        this.setState({hasError : true});
+        this.setState({errorInfo : "For sell trade stop loss must be higher than entry price."});
+      }
+    }
   }
 
   // Calculate Handler
@@ -314,7 +331,7 @@ class TradingCalculator extends React.Component {
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Risk <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
                       <div className="mx-5">
-                        <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="1%" value={this.state.risk} onChange={this.handleChangeRisk}/>
+                        <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="2%" value={this.state.risk} onChange={this.handleChangeRisk}/>
                       </div>
                     </div>
                   </div>
@@ -325,7 +342,7 @@ class TradingCalculator extends React.Component {
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Entry Price <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <div className="mx-5">
-                        <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="5" value={this.state.price} onChange={this.handleChangePrice}/>
+                        <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="25" value={this.state.price} onChange={this.handleChangePrice}/>
                       </div>
                     </div>
                   </div>
@@ -336,7 +353,7 @@ class TradingCalculator extends React.Component {
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Stop Loss Price <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <div className="mx-5">
-                        <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="4.8" value={this.state.stoploss} onChange={this.handleChangeStopLoss}/>
+                        <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="24" value={this.state.stoploss} onChange={this.handleChangeStopLoss}/>
                       </div>
                     </div>
                   </div>
