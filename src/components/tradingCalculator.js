@@ -15,7 +15,10 @@ class TradingCalculator extends React.Component {
       total: 500,
       totalTolerableRiskPerTrade: 20,
       stopLossPerUnitLoss: 1,
-      stopLossTotalLoss: 20
+      stopLossTotalLoss: 20,
+
+      hasError: false,
+      errorInfo: ""
     }
     this.handleChangeCapital = this.handleChangeCapital.bind(this);
     this.handleChangeRisk = this.handleChangeRisk.bind(this);
@@ -33,6 +36,12 @@ class TradingCalculator extends React.Component {
   // Risk
   handleChangeRisk(event) {
     this.setState({risk: event.target.value});
+    if (event.target.value < 100) {
+      this.setState({hasError : false});
+    } else {
+      this.setState({hasError : true});
+      this.setState({errorInfo : "Tolerable risk in percent of capital per trade must be less than 100."});
+    }
   }
   // Direction
   handleChangeDirection(event) {
@@ -60,7 +69,7 @@ class TradingCalculator extends React.Component {
               typeof verify !== 'number' ||
               verify < 0 ||
               verify === 0 || !isFinite(verify)) {
-              throw new TypeError('All numbers must have positive signum');
+              throw new TypeError('All numbers must have positive signum.');
           }
           this.verified = verify;
       };
@@ -95,7 +104,7 @@ class TradingCalculator extends React.Component {
 
       var Below = function (verify) {
           if (!(new PositiveSignum(verify).provide() < 100)) {
-              throw new TypeError('Tolerable risk in percent of capital per trade must be less than 100');
+              throw new TypeError('Tolerable risk in percent of capital per trade must be less than 100.');
           }
           this.verified = verify;
       };
@@ -332,10 +341,25 @@ class TradingCalculator extends React.Component {
                     </div>
                   </div>
                   <hr className="border-gray-800" />
-
-                  <div className="m-5">
-                    <input type="button" value="Enter" className="bg-blue-400 hover:bg-blue-500 w-full text-white font-bold py-2 px-4 rounded-full cursor-pointer" onClick={this.handleCalculate}/>
-                  </div>
+                  
+                  {/* Enter button checks if there's error */}
+                  { this.state.hasError == true ?
+                    <>
+                      <div className="m-5">
+                        <input type="button" value="Enter" className="bg-gray-500 w-full text-white font-bold py-2 px-4 rounded-full cursor-not-allowed"/>
+                      </div>
+                      <div className="my-5">
+                        <p className="px-4 mt-3 mb-1 w-full text-xs text-red-400">
+                          {this.state.errorInfo}
+                        </p>
+                      </div>
+                    </> :
+                    <>
+                      <div className="m-5">
+                        <input type="button" value="Enter" className="bg-blue-400 hover:bg-blue-500 w-full text-white font-bold py-2 px-4 rounded-full cursor-pointer" onClick={this.handleCalculate}/>
+                      </div>
+                    </>
+                  }
 
                 </div>
               </div>
