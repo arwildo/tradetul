@@ -6,6 +6,7 @@ import './style.css';
 import Navbar from "./components/navbar";
 import TradingCalculator from "./components/tradingCalculator";
 import Explanation from "./components/explanation";
+import ComingSoon from "./components/comingSoon";
 
 const Index = () => {
   return (
@@ -24,6 +25,12 @@ const Index = () => {
               <>
                 <Navbar />
                 <Explanation />
+              </>
+            } />
+            <Route path='/more' element={
+              <>
+                <Navbar />
+                <ComingSoon />
               </>
             } />
           </Routes>
