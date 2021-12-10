@@ -31,13 +31,28 @@ class TradingCalculator extends React.Component {
 
   // Capital
   handleChangeCapital(event) {
-    this.setState({capital: event.target.value});
+
+    // Only numbers filter
+    if (isNaN(event.target.value)) {
+      return;
+    }
+    const onlyNums = event.target.value.replace(/[^0-9]/g, "");
+    
+    // Input return value
+    this.setState({capital: onlyNums});
   }
   // Risk
   handleChangeRisk(event) {
-    this.setState({risk: event.target.value});
+    // Only numbers filter
+    if (isNaN(event.target.value)) {
+      return;
+    }
+    const onlyNums = event.target.value.replace(/[^0-9]/g, "");
 
-    if (event.target.value < 100) {
+    // Input return value
+    this.setState({risk: onlyNums});
+
+    if (onlyNums < 100) {
       this.setState({hasError : false});
     } else {
       this.setState({hasError : true});
@@ -69,21 +84,35 @@ class TradingCalculator extends React.Component {
   }
   // Price
   handleChangePrice(event) {
-    this.setState({price: event.target.value});
+    // Only numbers filter
+    if (isNaN(event.target.value)) {
+      return;
+    }
+    const onlyNums = event.target.value.replace(/[^0-9]/g, "");
+
+    // Input return value
+    this.setState({price: onlyNums});
   }
   // Stop Loss
   handleChangeStopLoss(event) {
-    this.setState({stoploss: event.target.value});
+    // Only numbers filter
+    if (isNaN(event.target.value)) {
+      return;
+    }
+    const onlyNums = event.target.value.replace(/[^0-9]/g, "");
+
+    // Input return value
+    this.setState({stoploss: onlyNums});
 
     if (this.state.direction == "long") {
-      if (event.target.value < this.state.price) {
+      if (onlyNums < this.state.price) {
         this.setState({hasError : false});
       } else {
         this.setState({hasError : true});
         this.setState({errorInfo : "For buy trade stop loss must be lower than entry price."});
       }
     } else {
-      if (event.target.value > this.state.price) {
+      if (onlyNums > this.state.price) {
         this.setState({hasError : false});
       } else {
         this.setState({hasError : true});
