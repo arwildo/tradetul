@@ -3,7 +3,7 @@ import Footer from "./footer";
 
 import Build from "../assets/img/build.svg";
 
-class Explanation extends React.Component {
+class Cookies extends React.Component {
   render() {
     return(
       <div className="mainDiv">
@@ -22,10 +22,9 @@ class Explanation extends React.Component {
                   <hr className="border-gray-800"/>
 
                  {/*<!--Section 1-->*/}
-                  <div className="mb-16 mx-2">
-                    <img src={ Build } className="w-48 mx-auto" alt="Coming Soon" />
-                    <p className="text-gray-600 font-extrabold text-xs text-center my-8">
-                      COMING SOON
+                  <div className="mb-4 mx-2">
+                    <p className="px-4 w-full text-sm text-gray-400 text-justify">
+                      Use at own discretion and risk. The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
                     </p>
                   </div>
                   <hr className="border-gray-800" />
@@ -42,4 +41,4 @@ class Explanation extends React.Component {
   }
 }
 
-export default Explanation;
+export default Cookies;
