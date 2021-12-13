@@ -69,14 +69,14 @@ class TradingCalculator extends React.Component {
         this.setState({hasError : false});
       } else {
         this.setState({hasError : true});
-        this.setState({errorInfo : "For sell trade stop loss must be lower than entry price."});
+        this.setState({errorInfo : "For sell trade stop loss must be higher than entry price."});
       }
     } else {
       if (this.state.stoploss < this.state.price) {
         this.setState({hasError : false});
       } else {
         this.setState({hasError : true});
-        this.setState({errorInfo : "For buy trade stop loss must be higher than entry price."});
+        this.setState({errorInfo : "For buy trade stop loss must be lower than entry price."});
       }
     }
 

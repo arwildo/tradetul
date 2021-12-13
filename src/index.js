@@ -8,6 +8,10 @@ import TradingCalculator from "./components/tradingCalculator";
 import Explanation from "./components/explanation";
 import ComingSoon from "./components/comingSoon";
 
+import Terms from "./components/terms";
+import Privacy from "./components/privacy";
+import Cookies from "./components/cookies";
+
 const Index = () => {
   return (
     <div className="relative h-screen">
@@ -31,6 +35,24 @@ const Index = () => {
               <>
                 <Navbar />
                 <ComingSoon />
+              </>
+            } />
+            <Route path='/terms' element={
+              <>
+                <Navbar />
+                <Terms />
+              </>
+            } />
+            <Route path='/privacy' element={
+              <>
+                <Navbar />
+                <Privacy />
+              </>
+            } />
+            <Route path='/Cookies' element={
+              <>
+                <Navbar />
+                <Cookies />
               </>
             } />
           </Routes>

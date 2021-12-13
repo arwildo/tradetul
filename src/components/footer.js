@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Logo from "../assets/img/tradetul.svg";
 
@@ -10,16 +11,16 @@ export default function(props) {
     <div className="flow-root m-2 inline">
       <div className="flex-1">
         <div className="flex">
-          <a href="/terms">
+          <Link to="/terms">
             <p className="text-xs leading-6 font-medium text-gray-500 mr-2">Terms</p>
-          </a>
-          <a href="/privacy">
+          </Link>
+          <Link to="/privacy">
             <p className="text-xs leading-6 font-medium text-gray-500 mr-2">Privacy</p>
-          </a>
-          <a href="/cookies">
+          </Link>
+          <Link to="/cookies">
             <p className="text-xs leading-6 font-medium text-gray-500 mr-2">Cookies</p>
-          </a>
-          <a href="/contact">
+          </Link>
+          <a href="https://arwildo.com" target="_blank">
             <p className="text-xs leading-6 font-medium text-gray-500">Contact</p>
           </a>
         </div>
