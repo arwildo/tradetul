@@ -32,7 +32,6 @@ export default function(props) {
         <span className="invisible sm:visible">
           More
         </span>
-        <div className="textSmall ml-2 px-2 border border-blue-400 rounded-full invisible sm:visible">Coming Soon</div>
       </Link>
     </>
   } else if (location === "/more") {
@@ -60,7 +59,6 @@ export default function(props) {
         <span className="invisible sm:visible">
           More
         </span>
-        <div className="textSmall ml-2 px-2 border border-blue-400 rounded-full invisible sm:visible">Coming Soon</div>
       </Link>
     </>
   } else {
@@ -88,7 +86,6 @@ export default function(props) {
         <span className="invisible sm:visible">
           More
         </span>
-        <div className="textSmall ml-2 px-2 border border-blue-400 rounded-full invisible sm:visible">Coming Soon</div>
       </Link>
     </>
   }

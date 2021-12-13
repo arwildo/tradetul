@@ -1,6 +1,8 @@
 import React from "react";
 import Footer from "./footer";
 
+import Build from "../assets/img/build.svg";
+
 class Explanation extends React.Component {
   render() {
     return(
@@ -20,9 +22,10 @@ class Explanation extends React.Component {
                   <hr className="border-gray-800"/>
 
                  {/*<!--Section 1-->*/}
-                  <div className="mb-4 mx-2">
-                    <p className="px-4 w-full text-sm text-gray-400 text-justify">
-                      Coming Soon
+                  <div className="mb-16 mx-2">
+                    <img src={ Build } className="w-48 mx-auto" alt="Coming Soon" />
+                    <p className="text-gray-600 font-extrabold text-xs text-center my-8">
+                      COMING SOON
                     </p>
                   </div>
                   <hr className="border-gray-800" />
