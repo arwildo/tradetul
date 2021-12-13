@@ -20,7 +20,7 @@ class Explanation extends React.Component {
                   <hr className="border-gray-800"/>
 
                  {/*<!--Section 1-->*/}
-                  <div className="mb-4 mx-2">
+                  <div className="mt-3 mb-6 mx-2">
                     <p className="px-4 w-full text-sm text-gray-400 text-justify">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et sagittis quam, non tempor enim. Ut tempor urna quis metus malesuada, nec accumsan ex maximus. Suspendisse lacinia eu leo a consequat. Proin eu molestie mauris, vitae viverra sem. Morbi eget massa non lectus venenatis pellentesque. Aliquam vel ipsum accumsan, convallis erat vitae, posuere eros. Donec iaculis mattis lectus, et vestibulum libero fermentum a. Maecenas a dui a lectus semper imperdiet in quis libero. Curabitur tempor vel leo id elementum. Praesent et pulvinar magna. Maecenas et fermentum lectus. Vivamus finibus hendrerit orci, eget consequat nulla volutpat finibus. Sed eu egestas erat.
                     </p>
@@ -42,7 +42,7 @@ class Explanation extends React.Component {
                   <hr className="border-gray-800"/>
 
                  {/*<!--Section 1-->*/}
-                  <div className="mb-4 mx-2">
+                  <div className="mt-3 mb-6 mx-2">
                     <p className="px-4 w-full text-sm text-gray-400 text-justify">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et sagittis quam, non tempor enim. Ut tempor urna quis metus malesuada, nec accumsan ex maximus. Suspendisse lacinia eu leo a consequat. Proin eu molestie mauris, vitae viverra sem. Morbi eget massa non lectus venenatis pellentesque. Aliquam vel ipsum accumsan, convallis erat vitae, posuere eros. Donec iaculis mattis lectus, et vestibulum libero fermentum a. Maecenas a dui a lectus semper imperdiet in quis libero. Curabitur tempor vel leo id elementum. Praesent et pulvinar magna. Maecenas et fermentum lectus. Vivamus finibus hendrerit orci, eget consequat nulla volutpat finibus. Sed eu egestas erat.
                     </p>

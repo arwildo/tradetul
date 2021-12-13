@@ -22,7 +22,7 @@ class Terms extends React.Component {
                   <hr className="border-gray-800"/>
 
                  {/*<!--Section 1-->*/}
-                  <div className="mb-4 mx-2">
+                  <div className="mt-3 mb-6 mx-2">
                     <p className="px-4 w-full text-sm text-gray-400 text-justify">
                       Use at own discretion and risk. The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
                     </p>
