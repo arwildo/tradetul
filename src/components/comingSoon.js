@@ -24,8 +24,9 @@ class Explanation extends React.Component {
                  {/*<!--Section 1-->*/}
                   <div className="mb-16 mx-2">
                     <img src={ Build } className="w-48 mx-auto" alt="Coming Soon" />
-                    <p className="text-gray-600 font-extrabold text-xs text-center my-8">
+                    <p className="text-gray-600 font-extrabold textSmall text-center my-8">
                       COMING SOON
+                      ...
                     </p>
                   </div>
                   <hr className="border-gray-800" />

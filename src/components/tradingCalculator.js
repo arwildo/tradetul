@@ -9,8 +9,8 @@ class TradingCalculator extends React.Component {
       capital: 1000,
       risk: 2,
       direction: "long",
-      price: 25,
-      stoploss: 24,
+      price: 2.53,
+      stoploss: 2.42,
       unitsToBuy: 20,
       total: 500,
       totalTolerableRiskPerTrade: 20,
@@ -36,7 +36,7 @@ class TradingCalculator extends React.Component {
     if (isNaN(event.target.value)) {
       return;
     }
-    const onlyNums = event.target.value.replace(/[^0-9]/g, "");
+    const onlyNums = event.target.value.replace(/[^0-9\.]/g, "");
     
     // Input return value
     this.setState({capital: onlyNums});
@@ -47,7 +47,7 @@ class TradingCalculator extends React.Component {
     if (isNaN(event.target.value)) {
       return;
     }
-    const onlyNums = event.target.value.replace(/[^0-9]/g, "");
+    const onlyNums = event.target.value.replace(/[^0-9\.]/g, "");
 
     // Input return value
     this.setState({risk: onlyNums});
@@ -69,14 +69,14 @@ class TradingCalculator extends React.Component {
         this.setState({hasError : false});
       } else {
         this.setState({hasError : true});
-        this.setState({errorInfo : "For sell trade stop loss must be higher than entry price."});
+        this.setState({errorInfo : "For Sell trade stop loss must be higher than entry price."});
       }
     } else {
       if (this.state.stoploss < this.state.price) {
         this.setState({hasError : false});
       } else {
         this.setState({hasError : true});
-        this.setState({errorInfo : "For buy trade stop loss must be lower than entry price."});
+        this.setState({errorInfo : "For Buy trade stop loss must be lower than entry price."});
       }
     }
 
@@ -88,10 +88,26 @@ class TradingCalculator extends React.Component {
     if (isNaN(event.target.value)) {
       return;
     }
-    const onlyNums = event.target.value.replace(/[^0-9]/g, "");
+    const onlyNums = event.target.value.replace(/[^0-9\.]/g, "");
 
     // Input return value
     this.setState({price: onlyNums});
+
+    if (this.state.direction == "long") {
+      if (onlyNums < this.state.price) {
+        this.setState({hasError : false});
+      } else {
+        this.setState({hasError : true});
+        this.setState({errorInfo : "For Buy trade stop loss must be lower than entry price."});
+      }
+    } else {
+      if (onlyNums > this.state.price) {
+        this.setState({hasError : false});
+      } else {
+        this.setState({hasError : true});
+        this.setState({errorInfo : "For Sell trade stop loss must be higher than entry price."});
+      }
+    }
   }
   // Stop Loss
   handleChangeStopLoss(event) {
@@ -99,7 +115,7 @@ class TradingCalculator extends React.Component {
     if (isNaN(event.target.value)) {
       return;
     }
-    const onlyNums = event.target.value.replace(/[^0-9]/g, "");
+    const onlyNums = event.target.value.replace(/[^0-9\.]/g, "");
 
     // Input return value
     this.setState({stoploss: onlyNums});
@@ -109,14 +125,14 @@ class TradingCalculator extends React.Component {
         this.setState({hasError : false});
       } else {
         this.setState({hasError : true});
-        this.setState({errorInfo : "For buy trade stop loss must be lower than entry price."});
+        this.setState({errorInfo : "For Buy trade stop loss must be lower than entry price."});
       }
     } else {
       if (onlyNums > this.state.price) {
         this.setState({hasError : false});
       } else {
         this.setState({hasError : true});
-        this.setState({errorInfo : "For sell trade stop loss must be higher than entry price."});
+        this.setState({errorInfo : "For Sell trade stop loss must be higher than entry price."});
       }
     }
   }
@@ -215,7 +231,7 @@ class TradingCalculator extends React.Component {
               return result;
           }
       };
-
+      
       Position.prototype.getTotal = function () {
           return (this.getUnitsToBuy() * this.getPricePerUnit()).toFixed(2);
       };
