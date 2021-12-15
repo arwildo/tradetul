@@ -9,13 +9,12 @@ class TradingCalculator extends React.Component {
       capital: 1000,
       risk: 2,
       direction: "long",
-      price: 2.53,
-      stoploss: 2.42,
+      price: 253,
+      stoploss: 245,
       unitsToBuy: 20,
       total: 500,
       totalTolerableRiskPerTrade: 20,
       stopLossPerUnitLoss: 1,
-      stopLossTotalLoss: 20,
 
       hasError: false,
       errorInfo: ""
@@ -136,10 +135,11 @@ class TradingCalculator extends React.Component {
       }
     }
   }
+// --------------------------------------------------------------------------------------------
+  // Engine Start --- Verify all the inputs are signum
 
   // Calculate Handler
   handleCalculate() {
-    // TradingCalculator Engine
     function calculator() {
       var calculator = {};
 
@@ -200,6 +200,8 @@ class TradingCalculator extends React.Component {
       TolerableRiskInPercentOfCapital.prototype.provide = function () {
           return this.verified;
       };
+// --------------------------------------------------------------------------------------------
+      // Engine 1 --- Main calculations
 
       var Position = function (capital,
                                tolerableRiskInPercentOfCapital,
@@ -219,17 +221,15 @@ class TradingCalculator extends React.Component {
 
       };
 
-      Position.prototype.getStopLossTotalLoss = function () {
-          return (this.getStopLossPerUnitLoss() * this.getUnitsToBuy()).toFixed(2);
-      };
-
       Position.prototype.getUnitsToBuy = function () {
-          var result = Math.floor((this.getTotalTolerableRiskPerTrade() / this.getStopLossPerUnitLoss()));
-          if (this.capital.provide() <= (result * this.pricePerUnit.provide())) {
-              return 0;
-          } else {
-              return result;
-          }
+          var result = (this.getTotalTolerableRiskPerTrade() / this.getStopLossPerUnitLoss());
+          //if (this.capital.provide() <= (result * this.pricePerUnit.provide())) {
+          //    return 0;
+          //} else {
+          //    return result;
+          //}
+          console.log(this.capital.provide() + " and " + (result * this.pricePerUnit.provide()))
+          return result;
       };
       
       Position.prototype.getTotal = function () {
@@ -239,6 +239,8 @@ class TradingCalculator extends React.Component {
       Position.prototype.getPricePerUnit = function () {
           return this.pricePerUnit.provide();
       };
+// --------------------------------------------------------------------------------------------
+      // Engine 2 --- Calculating based on direction long or short
 
       function long(capital,
                     tolerableRiskInPercentOfCapital,
@@ -252,7 +254,6 @@ class TradingCalculator extends React.Component {
               tolerableRiskInPercentOfCapital,
               pricePerUnit,
               stopLossPricePerUnit);
-
       }
 
       long.prototype = Object.create(Position.prototype);
@@ -281,25 +282,15 @@ class TradingCalculator extends React.Component {
       short.prototype.getStopLossPerUnitLoss = function () {
           return (this.stopLossPricePerUnit.provide() - this.pricePerUnit.provide()).toFixed(2);
       };
-
-      var validateDirection = function(direction){
-          if (!direction) {
-              throw new TypeError('direction must not be falsey');
-          }
-          if (typeof direction !== 'string' || !direction instanceof String) {
-              throw new TypeError('direction must be a string');
-          }
-          if (!(direction.toLowerCase() === 'long' || direction.toLowerCase() === 'short')) {
-              throw new TypeError('direction must be either long or short');
-          }
-      };
+// --------------------------------------------------------------------------------------------
+      // Engine 3 --- Calculate entry point
 
       calculator.calculate = function (capital,
                                  tolerableRiskInPercentOfCapitalPerTrade,
                                  direction,
                                  pricePerUnit,
                                  stopLossPricePerUnit) {
-          validateDirection(direction);
+
           if (direction.toLowerCase() === 'long') {
               return new long(
                   new Capital(capital),
@@ -320,6 +311,9 @@ class TradingCalculator extends React.Component {
       return calculator;
     };
 
+    // Engine End
+// --------------------------------------------------------------------------------------------
+
     let position = calculator().calculate(parseInt(this.state.capital), parseInt(this.state.risk), this.state.direction, parseInt(this.state.price), parseInt(this.state.stoploss));
     
     // Inputs to Calculator
@@ -328,7 +322,6 @@ class TradingCalculator extends React.Component {
       total: position.getTotal(),
       totalTolerableRiskPerTrade: position.getTotalTolerableRiskPerTrade(),
       stopLossPerUnitLoss: position.getStopLossPerUnitLoss(),
-      stopLossTotalLoss: position.getStopLossTotalLoss()
     })
   }
 
@@ -488,7 +481,7 @@ class TradingCalculator extends React.Component {
                 <div>
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Stop Loss / Unit Loss</p>
+                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risked / Share<span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.stopLossPerUnitLoss}</h2>
                     </div>
                   </div>
@@ -498,8 +491,8 @@ class TradingCalculator extends React.Component {
                 <div>
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risking Amount <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.stopLossTotalLoss}</h2>
+                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risked / Position <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
+                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.totalTolerableRiskPerTrade}</h2>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -507,12 +500,12 @@ class TradingCalculator extends React.Component {
               </div>
 
               {/* Row 3 */}
-              <div className="grid grid-cols-2 gap-2 mb-10">
+              <div className="grid grid-cols-2 gap-2 mb-8">
                 {/*<!--Section 5-->*/}
                 <div>
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Total Torelable Risk / Trade</p>
+                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risking Amount <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.totalTolerableRiskPerTrade}</h2>
                     </div>
                   </div>
