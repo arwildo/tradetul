@@ -91,23 +91,22 @@ class TradingCalculator extends React.Component {
     const onlyNums = event.target.value.replace(/[^0-9\.]/g, "");
 
     // Input return value
-    this.setState({price: onlyNums});
-
     if (this.state.direction == "long") {
-      if (onlyNums < this.state.price) {
+      if (onlyNums > this.state.stoploss) {
         this.setState({hasError : false});
       } else {
         this.setState({hasError : true});
         this.setState({errorInfo : "For Buy trade stop loss must be lower than entry price."});
       }
     } else {
-      if (onlyNums > this.state.price) {
+      if (onlyNums < this.state.stoploss) {
         this.setState({hasError : false});
       } else {
         this.setState({hasError : true});
         this.setState({errorInfo : "For Sell trade stop loss must be higher than entry price."});
       }
     }
+    this.setState({price: onlyNums});
   }
   // Stop Loss
   handleChangeStopLoss(event) {
@@ -118,8 +117,7 @@ class TradingCalculator extends React.Component {
     const onlyNums = event.target.value.replace(/[^0-9\.]/g, "");
 
     // Input return value
-    this.setState({stoploss: onlyNums});
-
+    console.log(this.state.price + " and " + this.state.stoploss); 
     if (this.state.direction == "long") {
       if (onlyNums < this.state.price) {
         this.setState({hasError : false});
@@ -135,6 +133,7 @@ class TradingCalculator extends React.Component {
         this.setState({errorInfo : "For Sell trade stop loss must be higher than entry price."});
       }
     }
+    this.setState({stoploss: onlyNums});
   }
 // --------------------------------------------------------------------------------------------
   // Engine Start --- Verify all the inputs are signum
