@@ -6,11 +6,11 @@ class TradingCalculator extends React.Component {
     super();
 
     this.state = {
-      capital: 1000,
+      capital: 500,
       risk: 2,
       direction: "long",
-      price: 253,
-      stoploss: 246,
+      price: 0.135,
+      stoploss: 0.125,
       unitsToBuy: 20,
       total: 500,
       totalTolerableRiskPerTrade: 20,
@@ -117,7 +117,6 @@ class TradingCalculator extends React.Component {
     const onlyNums = event.target.value.replace(/[^0-9\.]/g, "");
 
     // Input return value
-    console.log(this.state.price + " and " + this.state.stoploss); 
     if (this.state.direction == "long") {
       if (onlyNums < this.state.price) {
         this.setState({hasError : false});
@@ -147,7 +146,6 @@ class TradingCalculator extends React.Component {
           if (!verify ||
               isNaN(verify) ||
               typeof verify !== 'number' ||
-              verify < 0 ||
               verify === 0 || !isFinite(verify)) {
               throw new TypeError('All numbers must have positive signum.');
           }
@@ -167,6 +165,7 @@ class TradingCalculator extends React.Component {
       };
 
       var PricePerUnit = function (verify) {
+          console.log("priceperunit : " + verify);
           this.verified = new PositiveSignum(verify).provide();
       };
 
@@ -175,6 +174,7 @@ class TradingCalculator extends React.Component {
       };
 
       var StopLossPricePerUnit = function (verify) {
+          console.log("stoploss : " + verify);
           this.verified = new PositiveSignum(verify).provide();
       };
 
@@ -318,7 +318,7 @@ class TradingCalculator extends React.Component {
     // Engine End
 // --------------------------------------------------------------------------------------------
 
-    let position = calculator().calculate(parseInt(this.state.capital), parseInt(this.state.risk), this.state.direction, parseInt(this.state.price), parseInt(this.state.stoploss));
+    let position = calculator().calculate(parseFloat(this.state.capital), parseFloat(this.state.risk), this.state.direction, parseFloat(this.state.price), parseFloat(this.state.stoploss));
     
     // Inputs to Calculator
     this.setState({
