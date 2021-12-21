@@ -9,8 +9,8 @@ class TradingCalculator extends React.Component {
       capital: 500,
       risk: 2,
       direction: "long",
-      price: 0.135,
-      stoploss: 0.125,
+      price: 0.8205,
+      stoploss: 0.7955,
       unitsToBuy: 20,
       total: 500,
       totalTolerableRiskPerTrade: 20,
@@ -165,7 +165,6 @@ class TradingCalculator extends React.Component {
       };
 
       var PricePerUnit = function (verify) {
-          console.log("priceperunit : " + verify);
           this.verified = new PositiveSignum(verify).provide();
       };
 
@@ -174,7 +173,6 @@ class TradingCalculator extends React.Component {
       };
 
       var StopLossPricePerUnit = function (verify) {
-          console.log("stoploss : " + verify);
           this.verified = new PositiveSignum(verify).provide();
       };
 
@@ -214,7 +212,7 @@ class TradingCalculator extends React.Component {
       };
 
       Position.prototype.getTotalTolerableRiskPerTrade = function () {
-          return (this.capital.provide() * (this.tolerableRiskInPercentOfCapital.provide() / 100)).toFixed(2);
+          return (this.capital.provide() * (this.tolerableRiskInPercentOfCapital.provide() / 100));
       };
 
       Position.prototype.getStopLossPerUnitLoss = function () {
@@ -222,7 +220,7 @@ class TradingCalculator extends React.Component {
       };
 
       Position.prototype.getUnitsToBuy = function () {
-          var result = (this.getTotalTolerableRiskPerTrade() / this.getStopLossPerUnitLoss()).toFixed(1);
+          var result = (this.getTotalTolerableRiskPerTrade() / this.getStopLossPerUnitLoss());
           //if (this.capital.provide() <= (result * this.pricePerUnit.provide())) {
           //    return 0;
           //} else {
@@ -233,7 +231,7 @@ class TradingCalculator extends React.Component {
       };
       
       Position.prototype.getTotal = function () {
-          return (this.getUnitsToBuy() * this.getPricePerUnit()).toFixed(2);
+          return (this.getUnitsToBuy() * this.getPricePerUnit());
       };
 
       Position.prototype.getPricePerUnit = function () {
@@ -241,7 +239,7 @@ class TradingCalculator extends React.Component {
       };
 
       Position.prototype.getTotalRiskPerPosition = function () {
-          return ((this.capital.provide() * (this.tolerableRiskInPercentOfCapital.provide()) / 100) / (this.getUnitsToBuy() * this.getPricePerUnit()) * 100).toFixed(2)
+          return ((this.capital.provide() * (this.tolerableRiskInPercentOfCapital.provide()) / 100) / (this.getUnitsToBuy() * this.getPricePerUnit()) * 100);
       }
 // --------------------------------------------------------------------------------------------
       // Engine 2 --- Calculating based on direction long or short
@@ -263,7 +261,7 @@ class TradingCalculator extends React.Component {
       long.prototype = Object.create(Position.prototype);
       long.prototype.constructor = Position;
       long.prototype.getStopLossPerUnitLoss = function () {
-          return (this.pricePerUnit.provide() - this.stopLossPricePerUnit.provide()).toFixed(2);
+          return (this.pricePerUnit.provide() - this.stopLossPricePerUnit.provide());
       };
 
       function short(capital,
@@ -284,7 +282,7 @@ class TradingCalculator extends React.Component {
       short.prototype = Object.create(Position.prototype);
       short.prototype.constructor = Position;
       short.prototype.getStopLossPerUnitLoss = function () {
-          return (this.stopLossPricePerUnit.provide() - this.pricePerUnit.provide()).toFixed(2);
+          return (this.stopLossPricePerUnit.provide() - this.pricePerUnit.provide());
       };
 // --------------------------------------------------------------------------------------------
       // Engine 3 --- Calculate entry point
@@ -322,11 +320,11 @@ class TradingCalculator extends React.Component {
     
     // Inputs to Calculator
     this.setState({
-      unitsToBuy: position.getUnitsToBuy(),
-      total: position.getTotal(),
-      totalTolerableRiskPerTrade: position.getTotalTolerableRiskPerTrade(),
-      stopLossPerUnitLoss: position.getStopLossPerUnitLoss(),
-      totalRiskPerPosition: position.getTotalRiskPerPosition()
+      unitsToBuy: position.getUnitsToBuy().toFixed(2),
+      total: position.getTotal().toFixed(2),
+      totalTolerableRiskPerTrade: position.getTotalTolerableRiskPerTrade().toFixed(2),
+      stopLossPerUnitLoss: position.getStopLossPerUnitLoss().toFixed(2),
+      totalRiskPerPosition: position.getTotalRiskPerPosition().toFixed(2)
     })
   }
 
