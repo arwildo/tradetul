@@ -23,9 +23,9 @@ class Cookies extends React.Component {
 
                  {/*<!--Section 1-->*/}
                   <div className="mt-3 mb-6 mx-2">
-                    <p className="px-4 w-full text-sm text-gray-400 text-justify">
+                    <div className="px-4 w-full text-sm text-gray-400 text-justify">
                       <p>Like any other website, TradeTul uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
-                    </p>
+                    </div>
                   </div>
                   <hr className="border-gray-800" />
                   

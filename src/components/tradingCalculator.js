@@ -6,16 +6,16 @@ class TradingCalculator extends React.Component {
     super();
 
     this.state = {
-      capital: 500,
+      capital: 1000,
       risk: 2,
       direction: "long",
-      price: 0.8205,
-      stoploss: 0.7955,
+      price: 25,
+      stoploss: 24.73,
       unitsToBuy: 20,
       total: 500,
       totalTolerableRiskPerTrade: 20,
       stopLossPerUnitLoss: 1,
-      totalRiskPerPosition: 2,
+      totalRiskPerPosition: 4,
 
       hasError: false,
       errorInfo: ""
@@ -315,10 +315,18 @@ class TradingCalculator extends React.Component {
 
     // Engine End
 // --------------------------------------------------------------------------------------------
-
+    // Calculating
     let position = calculator().calculate(parseFloat(this.state.capital), parseFloat(this.state.risk), this.state.direction, parseFloat(this.state.price), parseFloat(this.state.stoploss));
     
-    // Inputs to Calculator
+    // Check if stop loss and SL is too tight
+    if (position.getTotal() > parseFloat(this.state.capital)) {
+      this.setState({
+        hasError : true,
+        errorInfo: "Position size is bigger than account capital. Adjust your risk or stop loss price."
+      })
+    } 
+
+    // Input to DOM
     this.setState({
       unitsToBuy: position.getUnitsToBuy().toFixed(2),
       total: position.getTotal().toFixed(2),

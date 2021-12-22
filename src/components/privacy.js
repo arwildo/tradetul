@@ -23,7 +23,7 @@ class Privacy extends React.Component {
 
                  {/*<!--Section 1-->*/}
                   <div className="mt-3 mb-6 mx-2">
-                    <p className="px-4 w-full text-sm text-gray-400 text-justify">
+                    <div className="px-4 w-full text-sm text-gray-400 text-justify">
                       <p>At TradeTul, accessible from tradetul.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by TradeTul and how we use it.</p>
                       <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
                       <br />
@@ -54,7 +54,7 @@ class Privacy extends React.Component {
 
                       <b>Consent</b>
                       <p>By using our website, you hereby consent to our Privacy Policy and agree to its Terms and Conditions.</p>
-                    </p>
+                    </div>
                   </div>
                   <hr className="border-gray-800" />
                   
