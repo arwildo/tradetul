@@ -322,7 +322,7 @@ class TradingCalculator extends React.Component {
     if (position.getTotal() > parseFloat(this.state.capital)) {
       this.setState({
         hasError : true,
-        errorInfo: "Position size is bigger than account capital. Adjust your risk or stop loss price."
+        errorInfo: "Position size is bigger than account capital. Please adjust your risk or stop loss price."
       })
     } 
 
@@ -385,7 +385,7 @@ class TradingCalculator extends React.Component {
                  {/*<!--Section 1-->*/}
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Account Amount <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
+                      <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Account Capital<span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <div className="mx-5">
                         <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="1000" value={this.state.capital} onChange={this.handleChangeCapital}/>
                       </div>

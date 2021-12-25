@@ -1,8 +1,26 @@
 import React from "react";
 import Footer from "./footer";
 
+// Get projects data
+let database = require('./db.json');
+database = database.data;
+
+
 class Explanation extends React.Component {
   render() {
+    
+    let drawDownTable = database.map(item => { 
+      return (
+        <tr>
+          <td className="px-8 py-1 border-b border-gray-700 bg-dim-700 text-sm text-center">
+            <p className="whitespace-no-wrap">{item.losses}%</p>
+          </td>
+          <td className="px-24 py-1 border-b border-gray-700 bg-dim-700 text-sm text-center">
+            <p className="whitespace-no-wrap">{item.GRB}%</p>
+          </td>
+        </tr>
+      )
+    })
     return(
       <div className="mainDiv">
         <section className="max-w-6xl mx-auto p-2">
@@ -21,31 +39,72 @@ class Explanation extends React.Component {
 
                  {/*<!--Section 1-->*/}
                   <div className="mt-3 mb-6 mx-2">
-                    <p className="px-4 w-full text-sm text-gray-400 text-justify">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et sagittis quam, non tempor enim. Ut tempor urna quis metus malesuada, nec accumsan ex maximus. Suspendisse lacinia eu leo a consequat. Proin eu molestie mauris, vitae viverra sem. Morbi eget massa non lectus venenatis pellentesque. Aliquam vel ipsum accumsan, convallis erat vitae, posuere eros. Donec iaculis mattis lectus, et vestibulum libero fermentum a. Maecenas a dui a lectus semper imperdiet in quis libero. Curabitur tempor vel leo id elementum. Praesent et pulvinar magna. Maecenas et fermentum lectus. Vivamus finibus hendrerit orci, eget consequat nulla volutpat finibus. Sed eu egestas erat.
-                    </p>
-                  </div>
-                  <hr className="border-gray-800" />
-                  
-                </div>
-              </div>
+                    <div className="px-4 w-full text-sm text-gray-400 text-justify">
+                      <b>Why Risk Management so important ?</b>
+                      <p>
+                        Trading capital is trader main working tool. 
+                        If you run out of funds to trade, you will be unable to trade and thus lose your job. 
+                        No matter which market you are trading or which trading strategy you apply, 
+                        losses are inevitably going to happen.
+                      </p>
+                      <br />
+                      <p>
+                        Therefore, protecting your trading capital needs to always have the highest priority. 
+                        Ideally, the amount you risk on each trade should be based on two thing: 
+                      </p>
+                      <br />
+                      <p>
+                          1. Controlling Drawdown
+                        <br/>
+                          2. Position Size 
+                      </p>
+                      <br />
+                      <br />
 
-              {/* Section Two */}
-              <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
-                <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
+                      <b>Controlling Drawdown</b>
+                      <p>
+                        A drawdown is the reduction of your trading capital after a series of losses. 
+                        The drawdown is calculated as a percentage difference between the peak in your 
+                        trading capital minus the capital after a series of losses.
+                      </p>
+                      <br />
+                      <p>
+                        No matter how strong your trading strategy is, you will eventually experience
+                        a losing streak. The bigger the drawdown, the harder it will be to recover 
+                        from the drawdown. Now, what is the reasonable limit? Have a look at the table below.
+                      </p>
+                      <br />
 
-                  <div className="flex">
-                    <div className="flex-1 m-2">
-                      <h2 className="px-4 py-2 text-md w-48 font-semibold text-white">Explanation</h2>
+                      <table className="min-w-full leading-normal">
+
+                        <thead>
+                          <tr>
+                            <th
+                              className="px-6 py-2 border-b-2 border-gray-700 bg-dim-600 text-center text-xs font-semibold tracking-wider">
+                              Losses
+                            </th>
+                            <th
+                              className="px-6 py-2 border-b-2 border-gray-700 bg-dim-600 text-center text-xs font-semibold tracking-wider">
+                              Gain Required to Breakeven
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                        </tbody>
+
+                      </table>
+                      { drawDownTable }
+                      <br />
+
+                      <p>
+                        The above table illustrates what is the percentage gain required to recover lost capital. 
+                        If you notice, at 25% loss, we need 33.3% gain to recover the loss and get back to breakeven.
+                        Therefore choosing the right risking between 1-3% account capital  per trade is the best 
+                        practice.
+                      </p>
+
                     </div>
-                  </div>
-                  <hr className="border-gray-800"/>
-
-                 {/*<!--Section 1-->*/}
-                  <div className="mt-3 mb-6 mx-2">
-                    <p className="px-4 w-full text-sm text-gray-400 text-justify">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et sagittis quam, non tempor enim. Ut tempor urna quis metus malesuada, nec accumsan ex maximus. Suspendisse lacinia eu leo a consequat. Proin eu molestie mauris, vitae viverra sem. Morbi eget massa non lectus venenatis pellentesque. Aliquam vel ipsum accumsan, convallis erat vitae, posuere eros. Donec iaculis mattis lectus, et vestibulum libero fermentum a. Maecenas a dui a lectus semper imperdiet in quis libero. Curabitur tempor vel leo id elementum. Praesent et pulvinar magna. Maecenas et fermentum lectus. Vivamus finibus hendrerit orci, eget consequat nulla volutpat finibus. Sed eu egestas erat.
-                    </p>
                   </div>
                   <hr className="border-gray-800" />
                   
