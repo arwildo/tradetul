@@ -261,7 +261,6 @@ class TradingCalculator extends React.Component {
       long.prototype = Object.create(Position.prototype);
       long.prototype.constructor = Position;
       long.prototype.getStopLossPerUnitLoss = function () {
-          console.log(this.pricePerUnit.provide() + "  and  " + this.stopLossPricePerUnit.provide());
           return (this.pricePerUnit.provide() - this.stopLossPricePerUnit.provide());
       };
 

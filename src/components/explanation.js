@@ -25,8 +25,7 @@ class Explanation extends React.Component {
       )
     })
     return(
-      <div className="mainDiv">
-        <section className="max-w-6xl mx-auto p-2">
+      <div className="mainDiv"> <section className="max-w-6xl mx-auto p-2">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
               {/* Section One */}
@@ -147,12 +146,39 @@ class Explanation extends React.Component {
                       <img src={ ResultImg } className="w-full mx-auto" alt="Coming Soon" />
                       <br />
                       <p>
-                        Based on his entry price, stop loss price and risk per trade the
-                        recommended position size is 20 $dYdX, times $25 equals to $500.
+                        Based on his entry price, stop loss price and risk per trade the 
+                        recommended position size is 20 of $dYdX or 500 USD. When the 
+                        trade doesn't goes as plan, the trader is manage his risk by 
+                        exit at his SL price and only loss $20 or 4% from his position 
+                        size at this trade or 2% from his account capital.
                       </p>
                       <br />
                       <p>
-                        [ Lists of equation to calculate results ]
+                        This are the equations used to calculate the risk calculator results:
+                      </p>
+                    </div>
+                  </div>
+                  <hr className="border-gray-800" />
+
+                </div>
+              </div>
+
+              {/* Section Three */}
+              <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
+                <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
+
+                  <div className="flex">
+                    <div className="flex-1 m-2">
+                    </div>
+                  </div>
+                  <hr className="border-gray-800"/>
+
+                 {/*<!--Section 1-->*/}
+                  <div className="mt-3 mb-6 mx-2">
+                    <div className="px-4 w-full text-sm text-gray-400 text-justify">
+                      <b>Equations</b>
+                      <p>
+                        This are the equations used to calculate the risk calculator results:
                       </p>
                     </div>
                   </div>
