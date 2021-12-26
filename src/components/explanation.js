@@ -1,6 +1,9 @@
 import React from "react";
 import Footer from "./footer";
 
+import InputImg from "../assets/img/input.png";
+import ResultImg from "../assets/img/result.png";
+
 // Get projects data
 let database = require('./db.json');
 database = database.data;
@@ -12,10 +15,10 @@ class Explanation extends React.Component {
     let drawDownTable = database.map(item => { 
       return (
         <tr>
-          <td className="px-8 py-1 border-b border-gray-700 bg-dim-700 text-sm text-center">
+          <td className="px-8 py-1 border-b border-gray-700 bg-dim-700 text-xs text-center">
             <p className="whitespace-no-wrap">{item.losses}%</p>
           </td>
-          <td className="px-24 py-1 border-b border-gray-700 bg-dim-700 text-sm text-center">
+          <td className="px-24 py-1 border-b border-gray-700 bg-dim-700 text-xs text-center">
             <p className="whitespace-no-wrap">{item.GRB}%</p>
           </td>
         </tr>
@@ -49,7 +52,7 @@ class Explanation extends React.Component {
                       </p>
                       <br />
                       <p>
-                        Therefore, protecting your trading capital needs to always have the highest priority. 
+                        Therefore, risk management to protecting your trading capital is the number one priority when trading. 
                         Ideally, the amount you risk on each trade should be based on two thing: 
                       </p>
                       <br />
@@ -99,8 +102,8 @@ class Explanation extends React.Component {
 
                       <p>
                         The above table illustrates what is the percentage gain required to recover lost capital. 
-                        If you notice, at 25% loss, we need 33.3% gain to recover the loss and get back to breakeven.
-                        Therefore choosing the right risking between 1-3% account capital  per trade is the best 
+                        If you notice, at 30% loss, we need 42.9% gain to recover the loss and get back to breakeven.
+                        Therefore choosing the right risk between 1-3% account capital  per trade is the best 
                         practice.
                       </p>
 
@@ -108,6 +111,53 @@ class Explanation extends React.Component {
                   </div>
                   <hr className="border-gray-800" />
                   
+                </div>
+              </div>
+
+              {/* Section Two */}
+              <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
+                <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
+
+                  <div className="flex">
+                    <div className="flex-1 m-2">
+                    </div>
+                  </div>
+                  <hr className="border-gray-800"/>
+
+                 {/*<!--Section 1-->*/}
+                  <div className="mt-3 mb-6 mx-2">
+                    <div className="px-4 w-full text-sm text-gray-400 text-justify">
+                      <b>Position Size</b>
+                      <p>
+                        Calculating the right position size is part of capital 
+                        preservation and key to survive long term in trading.
+                        You can use trading calculator to choosing the right position size 
+                        based on your entry price, stop loss price and risk per trade.
+                      </p>
+                      <br />
+                      <img src={ InputImg } className="w-full mx-auto" alt="Coming Soon" />
+                      <br />
+                      <p>
+                        In this example a trader have 1000 on his account, he's willing to 
+                        risk 2% of his capital to buy $dYdX at $25 and he saw if the price 
+                        hit $24 the bullish structure (higher high, higher low) is broken 
+                        therefore if the price hit $24 he will get out of that trade with loss.
+                      </p>
+                      <br />
+                      <img src={ ResultImg } className="w-full mx-auto" alt="Coming Soon" />
+                      <br />
+                      <p>
+                        Based on his entry price, stop loss price and risk per trade the
+                        recommended position size is 20 $dYdX, times $25 equals to $500.
+                      </p>
+                      <br />
+                      <p>
+                        [ Lists of equation to calculate results ]
+                      </p>
+                    </div>
+                  </div>
+                  <hr className="border-gray-800" />
+
                 </div>
               </div>
 

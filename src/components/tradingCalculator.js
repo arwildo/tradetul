@@ -10,7 +10,7 @@ class TradingCalculator extends React.Component {
       risk: 2,
       direction: "long",
       price: 25,
-      stoploss: 24.73,
+      stoploss: 24,
       unitsToBuy: 20,
       total: 500,
       totalTolerableRiskPerTrade: 20,
@@ -261,6 +261,7 @@ class TradingCalculator extends React.Component {
       long.prototype = Object.create(Position.prototype);
       long.prototype.constructor = Position;
       long.prototype.getStopLossPerUnitLoss = function () {
+          console.log(this.pricePerUnit.provide() + "  and  " + this.stopLossPricePerUnit.provide());
           return (this.pricePerUnit.provide() - this.stopLossPricePerUnit.provide());
       };
 
@@ -389,6 +390,7 @@ class TradingCalculator extends React.Component {
                       <div className="mx-5">
                         <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="1000" value={this.state.capital} onChange={this.handleChangeCapital}/>
                       </div>
+                      <p className="px-4 mx-2 mt-1 w-full text-xs text-gray-600">Your entire trading account capital.</p>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -400,6 +402,7 @@ class TradingCalculator extends React.Component {
                       <div className="mx-5">
                         <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="2%" value={this.state.risk} onChange={this.handleChangeRisk}/>
                       </div>
+                      <p className="px-4 mx-2 mt-1 w-full text-xs text-gray-600">Amount of capital you willing to risk per trade.</p>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -411,6 +414,7 @@ class TradingCalculator extends React.Component {
                       <div className="mx-5">
                         <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="25" value={this.state.price} onChange={this.handleChangePrice}/>
                       </div>
+                      <p className="px-4 mx-2 mt-1 w-full text-xs text-gray-600">Price of an asset when your buying/selling.</p>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -422,6 +426,7 @@ class TradingCalculator extends React.Component {
                       <div className="mx-5">
                         <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="24" value={this.state.stoploss} onChange={this.handleChangeStopLoss}/>
                       </div>
+                      <p className="px-4 mx-2 mt-1 w-full text-xs text-gray-600">Price when you deciding to get out of the trade at loss.</p>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -462,13 +467,14 @@ class TradingCalculator extends React.Component {
                 <hr className="border-gray-800"/>
 
               {/* Row 1 */}
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 gap-2">
                 {/*<!--Section 1-->*/}
                 <div>
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Size <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">Units</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.unitsToBuy}</h2>
+                      <h2 className="px-4 ml-2 w-48 font-bold text-xl text-blue-300">{this.state.unitsToBuy}</h2>
+                      <p className="px-4 mx-2 w-full text-xs text-gray-600">Amount of asset recommended to buy/sell.</p>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -478,7 +484,19 @@ class TradingCalculator extends React.Component {
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Size <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.total}</h2>
+                      <h2 className="px-4 ml-2 w-48 font-bold text-xl text-green-300">{this.state.total}</h2>
+                      <p className="px-4 mx-2 w-full text-xs text-gray-600">Amount of asset recommended to buy/sell in USD.</p>
+                    </div>
+                  </div>
+                  <hr className="border-gray-800" />
+                </div>
+                {/*<!--Section 3-->*/}
+                <div>
+                  <div className="flex">
+                    <div className="flex-1">
+                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risked / Position <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
+                      <h2 className="px-4 ml-2 w-48 font-bold text-red-300">{this.state.totalTolerableRiskPerTrade}</h2>
+                      <p className="px-4 mx-2 w-full text-xs text-gray-600">When stop loss (SL) executed, ${this.state.totalTolerableRiskPerTrade} will be lost on this trade.</p>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -492,36 +510,28 @@ class TradingCalculator extends React.Component {
                 <div>
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risked / Share<span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
+                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Entry - SL Price <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.stopLossPerUnitLoss}</h2>
                     </div>
                   </div>
-                  <hr className="border-gray-800" />
                 </div>
                 {/*<!--Section 4-->*/}
                 <div>
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risked / Position <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
+                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Entry - SL Price <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
                       <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.totalRiskPerPosition}%</h2>
                     </div>
                   </div>
-                  <hr className="border-gray-800" />
                 </div>
               </div>
+              <p className="px-4 mx-2 mt-2 w-full text-xs text-gray-600">The difference between entry price and stop loss price.</p>
+              <p className="px-4 mx-2 w-full text-xs text-gray-600">Also show {this.state.totalRiskPerPosition}% of position size are at risk on this trade.</p>
+              <hr className="border-gray-800" />
 
               {/* Row 3 */}
               <div className="grid grid-cols-2 gap-2 mb-8">
                 {/*<!--Section 5-->*/}
-                <div>
-                  <div className="flex">
-                    <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risked / Position <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.totalTolerableRiskPerTrade}</h2>
-                    </div>
-                  </div>
-                  <hr className="border-gray-800" />
-                </div>
                 {/*
                   <!--Section 6-->
                 <div>
