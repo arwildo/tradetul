@@ -14,7 +14,7 @@ class Explanation extends React.Component {
     
     let drawDownTable = database.map(item => { 
       return (
-        <tr>
+        <tr key={item.losses}>
           <td className="px-8 py-1 border-b border-gray-700 bg-dim-700 text-xs text-center">
             <p className="whitespace-no-wrap">{item.losses}%</p>
           </td>
@@ -43,7 +43,7 @@ class Explanation extends React.Component {
                   <div className="mt-3 mb-6 mx-2">
                     <div className="px-4 w-full text-sm text-gray-400 text-justify">
                       <b>Why Risk Management so important ?</b>
-                      <p>
+                      <p className="mt-1">
                         Trading capital is trader main working tool. 
                         If you run out of funds to trade, you will be unable to trade and thus lose your job. 
                         No matter which market you are trading or which trading strategy you apply, 
@@ -64,7 +64,7 @@ class Explanation extends React.Component {
                       <br />
 
                       <b>Controlling Drawdown</b>
-                      <p>
+                      <p className="mt-1">
                         A drawdown is the reduction of your trading capital after a series of losses. 
                         The drawdown is calculated as a percentage difference between the peak in your 
                         trading capital minus the capital after a series of losses.
@@ -127,7 +127,7 @@ class Explanation extends React.Component {
                   <div className="mt-3 mb-6 mx-2">
                     <div className="px-4 w-full text-sm text-gray-400 text-justify">
                       <b>Position Size</b>
-                      <p>
+                      <p className="mt-1">
                         Calculating the right position size is part of capital 
                         preservation and key to survive long term in trading.
                         You can use trading calculator to choosing the right position size 
@@ -152,10 +152,6 @@ class Explanation extends React.Component {
                         exit at his SL price and only loss $20 or 4% from his position 
                         size at this trade or 2% from his account capital.
                       </p>
-                      <br />
-                      <p>
-                        This are the equations used to calculate the risk calculator results:
-                      </p>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -177,7 +173,7 @@ class Explanation extends React.Component {
                   <div className="mt-3 mb-6 mx-2">
                     <div className="px-4 w-full text-sm text-gray-400 text-justify">
                       <b>Equations</b>
-                      <p>
+                      <p className="mt-1">
                         This are the equations used to calculate the risk calculator results:
                       </p>
                     </div>

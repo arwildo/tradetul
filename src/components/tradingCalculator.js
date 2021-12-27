@@ -62,44 +62,36 @@ class TradingCalculator extends React.Component {
   // Direction
   handleChangeDirection(event) {
     event.preventDefault();
-    
-    // Check SL price error
-    if (this.state.direction == "long") {
-      if (this.state.stoploss > this.state.price) {
-        this.setState({hasError : false});
-      } else {
-        this.setState({hasError : true});
-        this.setState({errorInfo : "For Sell trade stop loss must be higher than entry price."});
-      }
-    } else {
-      if (this.state.stoploss < this.state.price) {
-        this.setState({hasError : false});
-      } else {
-        this.setState({hasError : true});
-        this.setState({errorInfo : "For Buy trade stop loss must be lower than entry price."});
-      }
-    }
+
+    this.setState({
+      price : "",
+      stoploss : ""
+    });
 
     this.setState({direction: event.target.value});
   }
   // Price
   handleChangePrice(event) {
-    // Only numbers filter
     if (isNaN(event.target.value)) {
       return;
     }
+    // Only numbers filter
     const onlyNums = event.target.value.replace(/[^0-9\.]/g, "");
 
     // Input return value
     if (this.state.direction == "long") {
-      if (onlyNums > this.state.stoploss) {
+      if (parseFloat(onlyNums) > parseFloat(this.state.stoploss)) {
+        this.setState({hasError : false});
+      } else if (onlyNums == "") {
         this.setState({hasError : false});
       } else {
         this.setState({hasError : true});
         this.setState({errorInfo : "For Buy trade stop loss must be lower than entry price."});
       }
     } else {
-      if (onlyNums < this.state.stoploss) {
+      if (parseFloat(onlyNums) < parseFloat(this.state.stoploss)) {
+        this.setState({hasError : false});
+      } else if (onlyNums == "") {
         this.setState({hasError : false});
       } else {
         this.setState({hasError : true});
@@ -110,22 +102,26 @@ class TradingCalculator extends React.Component {
   }
   // Stop Loss
   handleChangeStopLoss(event) {
-    // Only numbers filter
     if (isNaN(event.target.value)) {
       return;
     }
+    // Only numbers filter
     const onlyNums = event.target.value.replace(/[^0-9\.]/g, "");
 
     // Input return value
     if (this.state.direction == "long") {
-      if (onlyNums < this.state.price) {
+      if (parseFloat(onlyNums) < parseFloat(this.state.price)) {
+        this.setState({hasError : false});
+      } else if (onlyNums == "") {
         this.setState({hasError : false});
       } else {
         this.setState({hasError : true});
         this.setState({errorInfo : "For Buy trade stop loss must be lower than entry price."});
       }
     } else {
-      if (onlyNums > this.state.price) {
+      if (parseFloat(onlyNums) > parseFloat(this.state.price)) {
+        this.setState({hasError : false});
+      } else if (onlyNums == "") {
         this.setState({hasError : false});
       } else {
         this.setState({hasError : true});
@@ -472,7 +468,7 @@ class TradingCalculator extends React.Component {
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Size <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">Units</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-xl text-blue-300">{this.state.unitsToBuy}</h2>
+                      <h2 className="px-4 ml-2 w-48 font-extrabold text-xl text-blue-300">{this.state.unitsToBuy}</h2>
                       <p className="px-4 mx-2 w-full text-xs text-gray-600">Amount of asset recommended to buy/sell.</p>
                     </div>
                   </div>
@@ -483,7 +479,7 @@ class TradingCalculator extends React.Component {
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Size <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-xl text-green-300">{this.state.total}</h2>
+                      <h2 className="px-4 ml-2 w-48 font-extrabold text-xl text-green-300">{this.state.total}</h2>
                       <p className="px-4 mx-2 w-full text-xs text-gray-600">Amount of asset recommended to buy/sell in USD.</p>
                     </div>
                   </div>
@@ -494,7 +490,7 @@ class TradingCalculator extends React.Component {
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risked / Position <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-red-300">{this.state.totalTolerableRiskPerTrade}</h2>
+                      <h2 className="px-4 ml-2 w-48 font-extrabold text-red-300">{this.state.totalTolerableRiskPerTrade}</h2>
                       <p className="px-4 mx-2 w-full text-xs text-gray-600">When stop loss (SL) executed, ${this.state.totalTolerableRiskPerTrade} will be lost on this trade.</p>
                     </div>
                   </div>
@@ -510,7 +506,7 @@ class TradingCalculator extends React.Component {
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Entry - SL Price <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.stopLossPerUnitLoss}</h2>
+                      <h2 className="px-4 ml-2 w-48 font-extrabold text-white">{this.state.stopLossPerUnitLoss}</h2>
                     </div>
                   </div>
                 </div>
@@ -519,7 +515,7 @@ class TradingCalculator extends React.Component {
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Entry - SL Price <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-bold text-white">{this.state.totalRiskPerPosition}%</h2>
+                      <h2 className="px-4 ml-2 w-48 font-extrabold text-white">{this.state.totalRiskPerPosition}%</h2>
                     </div>
                   </div>
                 </div>
