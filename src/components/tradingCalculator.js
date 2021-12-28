@@ -16,6 +16,7 @@ class TradingCalculator extends React.Component {
       totalTolerableRiskPerTrade: 20,
       stopLossPerUnitLoss: 1,
       totalRiskPerPosition: 4,
+      gainReq: 2.04, 
 
       hasError: false,
       errorInfo: ""
@@ -208,7 +209,6 @@ class TradingCalculator extends React.Component {
       };
 
       Position.prototype.getTotalTolerableRiskPerTrade = function () {
-          console.log(this.tolerableRiskInPercentOfCapital.provide());
           return (this.capital.provide() * (this.tolerableRiskInPercentOfCapital.provide() / 100));
       };
 
@@ -316,6 +316,11 @@ class TradingCalculator extends React.Component {
         errorInfo: "Position size is bigger than account capital. Please adjust your risk or stop loss price."
       })
     } 
+    
+    // Calculate gain required to recover
+    let gainRequired = (this.state.risk / (1 - (this.state.risk/100))).toFixed(2);
+
+    console.log(gainRequired);
 
     // Input to DOM
     this.setState({
@@ -323,7 +328,8 @@ class TradingCalculator extends React.Component {
       total: position.getTotal().toFixed(2),
       totalTolerableRiskPerTrade: position.getTotalTolerableRiskPerTrade().toFixed(2),
       stopLossPerUnitLoss: position.getStopLossPerUnitLoss().toFixed(2),
-      totalRiskPerPosition: position.getTotalRiskPerPosition().toFixed(2)
+      totalRiskPerPosition: position.getTotalRiskPerPosition().toFixed(2),
+      gainReq : gainRequired
     })
   }
 
@@ -536,6 +542,45 @@ class TradingCalculator extends React.Component {
                 */}
               </div>
 
+              </div>
+            </div>
+
+            <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
+              <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
+                <div className="flex">
+                  <div className="flex-1 m-2">
+                    <h2 className="px-4 py-2 text-md w-48 font-semibold text-white">Informations.</h2>
+                  </div>
+                </div>
+
+
+                <hr className="border-gray-800"/>
+
+              {/* Row 1 */}
+              <div className="grid grid-cols-1 gap-2 mb-8">
+                {/*<!--Section 1-->*/}
+                <div>
+                  <div className="flex">
+                    <div className="flex-1">
+                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Potential Loss <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
+                      <h2 className="px-4 ml-2 w-48 font-extrabold text-xl text-red-300">-{this.state.risk}%</h2>
+                      <p className="px-4 mt-1 mx-2 w-full text-xs text-gray-600">Potential loss from your account capital. <span className="text-blue-300">Learn More</span>.</p>
+                    </div>
+                  </div>
+                  <hr className="border-gray-800" />
+                </div>
+                {/*<!--Section 2-->*/}
+                <div>
+                  <div className="flex">
+                    <div className="flex-1">
+                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Gain Need to Recover <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
+                      <h2 className="px-4 ml-2 w-48 font-extrabold text-xl text-green-300">+{this.state.gainReq}%</h2>
+                      <p className="px-4 mt-1 mx-2 w-full text-xs text-gray-600">If this was a loss trade, you will need {this.state.gainReq}% gain to break even. <span className="text-blue-300">Learn More</span>.</p>
+                    </div>
+                  </div>
+                  <hr className="border-gray-800" />
+                </div>
+              </div>
               </div>
             </div>
 
