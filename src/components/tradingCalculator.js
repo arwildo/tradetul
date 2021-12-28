@@ -2,6 +2,9 @@ import React from "react";
 import Footer from "./footer";
 import { Link } from "react-router-dom";
 
+// Img
+import RiskManagement from "../assets/img/risk_management.svg";
+
 class TradingCalculator extends React.Component {
   constructor(props) {
     super();
@@ -546,6 +549,7 @@ class TradingCalculator extends React.Component {
               </div>
             </div>
 
+            {/* Section Three */}
             <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
               <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
                 <div className="flex">
@@ -581,6 +585,32 @@ class TradingCalculator extends React.Component {
                   </div>
                   <hr className="border-gray-800" />
                 </div>
+              </div>
+
+              </div>
+            </div>
+
+            {/* Section Three */}
+            <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
+              <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
+                <div className="flex">
+                  <div className="flex-1 m-2">
+                  </div>
+                </div>
+
+              {/* Row 1 */}
+              <div className="grid grid-cols-1 gap-2 mb-7">
+                {/*<!--Section 1-->*/}
+                <div>
+                  <div className="flex">
+                    <div className="flex-1">
+                      <Link to="/explanation">
+                        <img src={ RiskManagement } className="w-3/4 my-4 mx-auto" alt="Risk Management" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
               </div>
               </div>
             </div>
