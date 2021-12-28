@@ -36,4 +36,16 @@ structure Changes, the trade should end.
 Why only risk 3%
 
 
+# Equations
+* add [] arround left side of equations and color match the results color
+
+[Risk Per Trade]
+
+[Entry - SL Price] = Entry Price - Stop Loss Price
+
+[Position Size Unit] = [Risk per Trade] / [Entry - SL Price]
+
+[Posiion Size USD] = [Position Size Unit] * Entry Price
+
+[Entry - SL Price (%)] = ([Risk per Trade] / Position Size USD) * 100
 

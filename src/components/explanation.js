@@ -1,8 +1,16 @@
 import React from "react";
 import Footer from "./footer";
 
+// imgs
 import InputImg from "../assets/img/input.png";
 import ResultImg from "../assets/img/result.png";
+
+// Equations
+import RiskPerTrade from "../assets/img/riskPerTrade.svg";
+import EntryMinSl from "../assets/img/entryMinSL.svg";
+import PositionSizeUnit from "../assets/img/positionSizeUnit.svg";
+import PositionSizeUsd from "../assets/img/positionSizeUsd.svg";
+import EntryMinSlPer from "../assets/img/entryMinSlPer.svg";
 
 // Get projects data
 let database = require('./db.json');
@@ -93,10 +101,10 @@ class Explanation extends React.Component {
                         </thead>
 
                         <tbody>
+                          { drawDownTable }
                         </tbody>
 
                       </table>
-                      { drawDownTable }
                       <br />
 
                       <p>
@@ -176,6 +184,11 @@ class Explanation extends React.Component {
                       <p className="mt-1">
                         This are the equations used to calculate the risk calculator results:
                       </p>
+                      <img src={ RiskPerTrade } className="w-70 mt-5" alt="Risk per Trade" />
+                      <img src={ EntryMinSl } className="w-70 mt-5" alt="Entry Price minus Stop Loss Price" />
+                      <img src={ PositionSizeUnit } className="w-70 mt-5" alt="Position Size Unit" />
+                      <img src={ PositionSizeUsd } className="w-70 mt-5" alt="Position Size USD" />
+                      <img src={ EntryMinSlPer } className="w-70 mt-5" alt="EntryPrice minus Stop Loss Percentage" />
                     </div>
                   </div>
                   <hr className="border-gray-800" />

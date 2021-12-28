@@ -208,6 +208,7 @@ class TradingCalculator extends React.Component {
       };
 
       Position.prototype.getTotalTolerableRiskPerTrade = function () {
+          console.log(this.tolerableRiskInPercentOfCapital.provide());
           return (this.capital.provide() * (this.tolerableRiskInPercentOfCapital.provide() / 100));
       };
 
@@ -217,12 +218,6 @@ class TradingCalculator extends React.Component {
 
       Position.prototype.getUnitsToBuy = function () {
           var result = (this.getTotalTolerableRiskPerTrade() / this.getStopLossPerUnitLoss());
-          //if (this.capital.provide() <= (result * this.pricePerUnit.provide())) {
-          //    return 0;
-          //} else {
-          //    return result;
-          //}
-          //console.log(this.capital.provide() + " and " + (result * this.pricePerUnit.provide()))
           return result;
       };
       
@@ -489,7 +484,7 @@ class TradingCalculator extends React.Component {
                 <div>
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risked / Position <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
+                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risked / Trade<span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <h2 className="px-4 ml-2 w-48 font-extrabold text-red-300">{this.state.totalTolerableRiskPerTrade}</h2>
                       <p className="px-4 mx-2 w-full text-xs text-gray-600">When stop loss (SL) executed, ${this.state.totalTolerableRiskPerTrade} will be lost on this trade.</p>
                     </div>
