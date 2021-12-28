@@ -1,5 +1,6 @@
 import React from "react";
 import Footer from "./footer";
+import { Link } from "react-router-dom";
 
 class TradingCalculator extends React.Component {
   constructor(props) {
@@ -549,7 +550,7 @@ class TradingCalculator extends React.Component {
               <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
                 <div className="flex">
                   <div className="flex-1 m-2">
-                    <h2 className="px-4 py-2 text-md w-48 font-semibold text-white">Informations.</h2>
+                    <h2 className="px-4 py-2 text-md w-48 font-semibold text-white">Additional Info</h2>
                   </div>
                 </div>
 
@@ -564,7 +565,7 @@ class TradingCalculator extends React.Component {
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Potential Loss <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
                       <h2 className="px-4 ml-2 w-48 font-extrabold text-xl text-red-300">-{this.state.risk}%</h2>
-                      <p className="px-4 mt-1 mx-2 w-full text-xs text-gray-600">Potential loss from your account capital. <span className="text-blue-300">Learn More</span>.</p>
+                      <p className="px-4 mt-1 mx-2 w-full text-xs text-gray-600">Potential loss from your account capital. <Link to="/explanation"><span className="text-blue-300">Learn More</span></Link>.</p>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -575,7 +576,7 @@ class TradingCalculator extends React.Component {
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Gain Need to Recover <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
                       <h2 className="px-4 ml-2 w-48 font-extrabold text-xl text-green-300">+{this.state.gainReq}%</h2>
-                      <p className="px-4 mt-1 mx-2 w-full text-xs text-gray-600">If this was a loss trade, you will need {this.state.gainReq}% gain to break even. <span className="text-blue-300">Learn More</span>.</p>
+                      <p className="px-4 mt-1 mx-2 w-full text-xs text-gray-600">If this was a loss trade, you will need {this.state.gainReq}% gain to break even. <Link to="/explanation"><span className="text-blue-300">Learn More</span></Link>.</p>
                     </div>
                   </div>
                   <hr className="border-gray-800" />

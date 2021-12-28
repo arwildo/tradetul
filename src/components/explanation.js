@@ -18,6 +18,9 @@ database = database.data;
 
 
 class Explanation extends React.Component {
+  componentDidMount() {
+      window.scrollTo(0, 0);
+  }
   render() {
     
     let drawDownTable = database.map(item => { 
