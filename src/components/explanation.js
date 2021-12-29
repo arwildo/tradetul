@@ -26,10 +26,10 @@ class Explanation extends React.Component {
     let drawDownTable = database.map(item => { 
       return (
         <tr key={item.losses}>
-          <td className="px-8 py-1 border-b border-gray-700 bg-dim-700 text-xs text-center">
+          <td className="py-1 border-b border-gray-700 bg-dim-700 text-xs text-center">
             <p className="whitespace-no-wrap">{item.losses}%</p>
           </td>
-          <td className="px-24 py-1 border-b border-gray-700 bg-dim-700 text-xs text-center">
+          <td className="py-1 border-b border-gray-700 bg-dim-700 text-xs text-center">
             <p className="whitespace-no-wrap">{item.GRB}%</p>
           </td>
         </tr>
@@ -52,16 +52,16 @@ class Explanation extends React.Component {
 
                  {/*<!--Section 1-->*/}
                   <div className="mt-3 mb-6 mx-2">
-                    <div className="px-4 w-full text-sm text-gray-400 text-justify">
-                      <b>Why Risk Management so important ?</b>
-                      <p className="mt-1">
+                    <div className="px-4 w-full text-sm text-gray-400">
+                      <b className="text-left">Why Risk Management so important ?</b>
+                      <p className="mt-1 text-justify">
                         Trading capital is trader main working tool. 
                         If you run out of funds to trade, you will be unable to trade and thus lose your job. 
                         No matter which market you are trading or which trading strategy you apply, 
                         losses are inevitably going to happen.
                       </p>
                       <br />
-                      <p>
+                      <p className="text-justify">
                         Therefore, risk management to protecting your trading capital is the number one priority when trading. 
                         Ideally, the amount you risk on each trade should be based on two thing: 
                       </p>
@@ -98,7 +98,8 @@ class Explanation extends React.Component {
                             </th>
                             <th
                               className="px-6 py-2 border-b-2 border-gray-700 bg-dim-600 text-center text-xs font-semibold tracking-wider">
-                              Gain Required to Breakeven
+                              Gain Required<br /> 
+                              to Breakeven
                             </th>
                           </tr>
                         </thead>
