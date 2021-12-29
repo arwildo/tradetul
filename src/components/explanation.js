@@ -41,7 +41,7 @@ class Explanation extends React.Component {
 
               {/* Section One */}
               <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
-                <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
+                <div className="w-72 sm:w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
 
                   <div className="flex">
                     <div className="flex-1 m-2">
@@ -126,7 +126,7 @@ class Explanation extends React.Component {
 
               {/* Section Two */}
               <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
-                <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
+                <div className="w-72 sm:w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
 
                   <div className="flex">
                     <div className="flex-1 m-2">
@@ -172,7 +172,7 @@ class Explanation extends React.Component {
 
               {/* Section Three */}
               <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
-                <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
+                <div className="w-72 sm:w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
 
                   <div className="flex">
                     <div className="flex-1 m-2">

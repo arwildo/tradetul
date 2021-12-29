@@ -119,12 +119,12 @@ export default function(props) {
 
   return(
     <header className="text-white h-12 py-4 h-auto">
-      <div className="w-16 sm:w-60">
-        <div className="overflow-y-auto pr-3 w-56 w-60">
+      <div className="w-12 sm:w-60">
+        <div className="overflow-y-auto pr-3 w-60">
 
-          <img src={ Logo } className="h-8 w-8 ml-3" alt="TradeTul" />
+          <img src={ Logo } className="h-8 w-8 ml-2" alt="TradeTul" />
 
-          <nav className="mt-5 px-2">
+          <nav className="mt-5 px-1">
             { navbarContent }
           </nav>
 

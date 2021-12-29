@@ -347,7 +347,7 @@ class TradingCalculator extends React.Component {
 
               {/* Section One */}
               <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
-                <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
+                <div className="w-72 sm:w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
 
                   <div className="flex">
                     <div className="flex-1 m-2">
@@ -383,50 +383,58 @@ class TradingCalculator extends React.Component {
                     </>
                   }
 
-                 {/*<!--Section 1-->*/}
+                 {/*<!--Input 1-->*/}
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Account Capital<span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <div className="mx-5">
                         <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="1000" value={this.state.capital} onChange={this.handleChangeCapital}/>
                       </div>
-                      <p className="px-4 mx-2 mt-1 w-full text-xs text-gray-600">Your entire trading account capital.</p>
+                      <div className="mx-6">
+                        <p className="mt-1 w-full text-xs text-gray-600">Your trading account capital.</p>
+                      </div>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
 
-                 {/*<!--Section 2-->*/}
+                 {/*<!--Input 2-->*/}
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Risk <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
                       <div className="mx-5">
                         <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="2%" value={this.state.risk} onChange={this.handleChangeRisk}/>
                       </div>
-                      <p className="px-4 mx-2 mt-1 w-full text-xs text-gray-600">Amount of capital you willing to risk per trade.</p>
+                      <div className="mx-6">
+                        <p className="mt-1 w-full text-xs text-gray-600">Amount of capital you willing to risk per trade.</p>
+                      </div>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
 
-                 {/*<!--Section 3-->*/}
+                 {/*<!--Input 3-->*/}
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Entry Price <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <div className="mx-5">
                         <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="25" value={this.state.price} onChange={this.handleChangePrice}/>
                       </div>
-                      <p className="px-4 mx-2 mt-1 w-full text-xs text-gray-600">Price of an asset when your buying/selling.</p>
+                      <div className="mx-6">
+                        <p className="mt-1 w-full text-xs text-gray-600">Price of an asset when you buying/selling.</p>
+                      </div>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
 
-                 {/*<!--Section 4-->*/}
+                 {/*<!--Input 4-->*/}
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 mb-1 w-48 text-xs text-gray-400">Stop Loss Price <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <div className="mx-5">
                         <input className="bg-dim-600 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400" placeholder="24" value={this.state.stoploss} onChange={this.handleChangeStopLoss}/>
                       </div>
-                      <p className="px-4 mx-2 mt-1 w-full text-xs text-gray-600">Price when you deciding to get out of the trade at loss.</p>
+                      <div className="mx-6">
+                        <p className="mt-1 w-full text-xs text-gray-600">Price when you deciding to get out of the trade at loss.</p>
+                      </div>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -456,7 +464,7 @@ class TradingCalculator extends React.Component {
 
             {/* Section Two */}
             <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
-              <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
+              <div className="w-72 sm:w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
                 <div className="flex">
                   <div className="flex-1 m-2">
                     <h2 className="px-4 py-2 text-md w-48 font-semibold text-white">Results</h2>
@@ -474,7 +482,9 @@ class TradingCalculator extends React.Component {
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Size <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">Units</span></p>
                       <h2 className="px-4 ml-2 w-48 font-extrabold text-xl text-blue-300">{this.state.unitsToBuy}</h2>
-                      <p className="px-4 mx-2 w-full text-xs text-gray-600">Amount of asset recommended to buy/sell.</p>
+                      <div className="mx-6">
+                        <p className="w-full text-xs text-gray-600">Amount of asset recommended to buy/sell.</p>
+                      </div>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -485,7 +495,9 @@ class TradingCalculator extends React.Component {
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Position Size <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <h2 className="px-4 ml-2 w-48 font-extrabold text-xl text-green-300">{this.state.total}</h2>
-                      <p className="px-4 mx-2 w-full text-xs text-gray-600">Amount of asset recommended to buy/sell in USD.</p>
+                      <div className="mx-6">
+                        <p className="w-full text-xs text-gray-600">Amount of asset recommended to buy/sell in USD.</p>
+                      </div>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -496,7 +508,9 @@ class TradingCalculator extends React.Component {
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risked / Trade<span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <h2 className="px-4 ml-2 w-48 font-extrabold text-red-300">{this.state.totalTolerableRiskPerTrade}</h2>
-                      <p className="px-4 mx-2 w-full text-xs text-gray-600">When stop loss (SL) executed, ${this.state.totalTolerableRiskPerTrade} will be lost on this trade.</p>
+                      <div className="mx-6">
+                        <p className="w-full text-xs text-gray-600">When stop loss (SL) executed, ${this.state.totalTolerableRiskPerTrade} will be lost on this trade.</p>
+                      </div>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -510,7 +524,7 @@ class TradingCalculator extends React.Component {
                 <div>
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Entry - SL Price <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
+                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Entry - SL Price <span className="textSmall ml-1 sm:px-2 w-10 font-bold bg-dim-600 rounded-full">USD</span></p>
                       <h2 className="px-4 ml-2 w-48 font-extrabold text-white">{this.state.stopLossPerUnitLoss}</h2>
                     </div>
                   </div>
@@ -519,14 +533,16 @@ class TradingCalculator extends React.Component {
                 <div>
                   <div className="flex">
                     <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Entry - SL Price <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
+                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Entry - SL Price <span className="textSmall ml-1 sm:px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
                       <h2 className="px-4 ml-2 w-48 font-extrabold text-white">{this.state.totalRiskPerPosition}%</h2>
                     </div>
                   </div>
                 </div>
               </div>
-              <p className="px-4 mx-2 mt-2 w-full text-xs text-gray-600">The difference between entry price and stop loss price.</p>
-              <p className="px-4 mx-2 w-full text-xs text-gray-600">Also show {this.state.totalRiskPerPosition}% of position size are at risk on this trade.</p>
+              <div className="mx-6">
+                <p className="mt-2 w-full text-xs text-gray-600">The difference between entry price and stop loss price.</p>
+                <p className="w-full text-xs text-gray-600">Also show {this.state.totalRiskPerPosition}% of position size are at risk on this trade.</p>
+              </div>
               <hr className="border-gray-800" />
 
               {/* Row 3 */}
@@ -551,7 +567,7 @@ class TradingCalculator extends React.Component {
 
             {/* Section Three */}
             <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
-              <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
+              <div className="w-72 sm:w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
                 <div className="flex">
                   <div className="flex-1 m-2">
                     <h2 className="px-4 py-2 text-md w-48 font-semibold text-white">Additional Info</h2>
@@ -569,7 +585,9 @@ class TradingCalculator extends React.Component {
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Potential Loss <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
                       <h2 className="px-4 ml-2 w-48 font-extrabold text-xl text-red-300">-{this.state.risk}%</h2>
-                      <p className="px-4 mt-1 mx-2 w-full text-xs text-gray-600">Potential loss from your account capital. <Link to="/explanation"><span className="text-blue-300">Learn More</span></Link>.</p>
+                      <div className="mx-6">
+                        <p className="mt-1 w-full text-xs text-gray-600">Potential loss from your account capital. <Link to="/explanation"><span className="text-blue-300">Learn More</span></Link>.</p>
+                      </div>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -580,7 +598,9 @@ class TradingCalculator extends React.Component {
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Gain Need to Recover <span className="textSmall ml-1 px-2 w-10 font-bold bg-dim-600 rounded-full">%</span></p>
                       <h2 className="px-4 ml-2 w-48 font-extrabold text-xl text-green-300">+{this.state.gainReq}%</h2>
-                      <p className="px-4 mt-1 mx-2 w-full text-xs text-gray-600">If this was a loss trade, you will need {this.state.gainReq}% gain to break even. <Link to="/explanation"><span className="text-blue-300">Learn More</span></Link>.</p>
+                      <div className="mx-6">
+                        <p className="mt-1 w-full text-xs text-gray-600">If this was a loss trade, you will need {this.state.gainReq}% gain to break even. <Link to="/explanation"><span className="text-blue-300">Learn More</span></Link>.</p>
+                      </div>
                     </div>
                   </div>
                   <hr className="border-gray-800" />
@@ -590,9 +610,9 @@ class TradingCalculator extends React.Component {
               </div>
             </div>
 
-            {/* Section Three */}
+            {/* Section Four */}
             <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
-              <div className="w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
+              <div className="w-72 sm:w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
                 <div className="flex">
                   <div className="flex-1 m-2">
                   </div>
