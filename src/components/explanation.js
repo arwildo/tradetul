@@ -75,13 +75,13 @@ class Explanation extends React.Component {
                       <br />
 
                       <b>Controlling Drawdown</b>
-                      <p className="mt-1">
+                      <p className="mt-1 text-justify">
                         A drawdown is the reduction of your trading capital after a series of losses. 
                         The drawdown is calculated as a percentage difference between the peak in your 
                         trading capital minus the capital after a series of losses.
                       </p>
                       <br />
-                      <p>
+                      <p className="mt-1 text-justify">
                         No matter how strong your trading strategy is, you will eventually experience
                         a losing streak. The bigger the drawdown, the harder it will be to recover 
                         from the drawdown. Now, what is the reasonable limit? Have a look at the table below.
@@ -111,7 +111,7 @@ class Explanation extends React.Component {
                       </table>
                       <br />
 
-                      <p>
+                      <p className="mt-1 text-justify">
                         The above table illustrates what is the percentage gain required to recover lost capital. 
                         If you notice, at 30% loss, we need 42.9% gain to recover the loss and get back to breakeven.
                         Therefore choosing the right risk between 1-3% account capital  per trade is the best 
