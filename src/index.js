@@ -17,7 +17,7 @@ const Index = () => {
     <div className="relative h-screen">
       <div className="flex justify-center">
 
-        <BrowserRouter basename={ process.env.PUBLIC_URL }>
+        <BrowserRouter basename="/tradetul">
           <Routes>
             <Route exact path='/' element={
               <>

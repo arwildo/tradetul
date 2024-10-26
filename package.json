@@ -1,11 +1,14 @@
 {
   "name": "tradetul",
+  "homepage": "https://arwildo.com/tradetul",
   "version": "1.0.0",
   "description": "All-in-one useful trading tools web app.",
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -23,7 +26,6 @@
   "bugs": {
     "url": "https://github.com/arwildo/tradetul/issues"
   },
-  "homepage": "https://github.com/arwildo/tradetul#readme",
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -39,6 +41,7 @@
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "file-loader": "^6.2.0",
+    "gh-pages": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.4.5",
     "postcss-cli": "^9.0.2",

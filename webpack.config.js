@@ -1,15 +1,13 @@
 const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
 const webpack = require('webpack');
-
 module.exports = {
   entry: path.join(__dirname, "./src/index.js"),
   output: {
       path: path.join(__dirname, "./dist"),
       filename: "bundle.js",
-      publicPath: '/'
+      publicPath: '/tradetul/'  // Changed this line
   },
   module: {
     rules: [
@@ -51,9 +49,9 @@ module.exports = {
       chunkFilename: "style.css"
     }),
     new HtmlWebPackPlugin({
-    template: "./src/index.html",
-    filename: "./index.html",
-    favion: "src/components/assets/img/logo.png"
+      template: "./src/index.html",
+      filename: "./index.html",
+      favion: "src/components/assets/img/logo.png"
     }),
   ],
   resolve: {
