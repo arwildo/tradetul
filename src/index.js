@@ -5,6 +5,7 @@ import './style.css';
 
 import Navbar from "./components/navbar";
 import TradingCalculator from "./components/tradingCalculator";
+import Futures from "./components/futures";
 import Explanation from "./components/explanation";
 import ComingSoon from "./components/comingSoon";
 
@@ -20,6 +21,12 @@ const Index = () => {
         <BrowserRouter basename="/tradetul">
           <Routes>
             <Route exact path='/' element={
+              <>
+                <Navbar />
+                <Futures />
+              </>
+            } />
+            <Route exact path='/spot' element={
               <>
                 <Navbar />
                 <TradingCalculator />
