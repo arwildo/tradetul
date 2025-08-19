@@ -153,7 +153,7 @@ class Futures extends React.Component {
             <div>
               {/* Section One - Inputs */}
               <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
-                <div className="w-72 sm:w-96 rounded-lg bg-gray-800 overflow-hidden shadow-lg">
+                <div className="w-72 sm:w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
 
                   <div className="flex">
                     <div className="flex-1 m-2">
@@ -161,7 +161,6 @@ class Futures extends React.Component {
                     </div>
                   </div>
 
-                  <hr className="border-gray-700"/>
 
                   {/* Position Type Display */}
                   <div className="mx-5 my-2">
@@ -190,6 +189,7 @@ class Futures extends React.Component {
                           placeholder="50"
                           value={this.state.margin}
                           onChange={this.handleChangeMargin}
+                          autoFocus
                         />
                       </div>
                       <div className="mx-6">
@@ -197,7 +197,6 @@ class Futures extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <hr className="border-gray-700" />
 
                  {/*Input 2 - Entry Price*/}
                   <div className="flex">
@@ -216,7 +215,6 @@ class Futures extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <hr className="border-gray-700" />
 
                  {/*Input 3 - Stop Loss Price*/}
                   <div className="flex">
@@ -230,12 +228,11 @@ class Futures extends React.Component {
                           onChange={this.handleChangeSlPrice}
                         />
                       </div>
-                      <div className="mx-6">
+                      <div className="mx-6 mb-10">
                         <p className="mt-1 w-full text-xs text-gray-600">Your stop loss price for risk management.</p>
                       </div>
                     </div>
                   </div>
-                  <hr className="border-gray-700" />
 
                   {/* Error/Warning Display */}
                   {this.state.hasError && (
@@ -252,14 +249,13 @@ class Futures extends React.Component {
 
             {/* Section Two - Results */}
             <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
-              <div className="w-72 sm:w-96 rounded-lg bg-gray-800 overflow-hidden shadow-lg">
+              <div className="w-72 sm:w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
                 <div className="flex">
                   <div className="flex-1 m-2">
                     <h2 className="px-4 py-2 text-md w-48 font-semibold text-white">Results</h2>
                   </div>
                 </div>
 
-                <hr className="border-gray-700"/>
 
               {/* Row 1 - Main Results */}
               <div className="grid grid-cols-1 gap-2">
@@ -274,7 +270,6 @@ class Futures extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <hr className="border-gray-700" />
                 </div>
 
                 {/*Position Size*/}
@@ -288,7 +283,6 @@ class Futures extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <hr className="border-gray-700" />
                 </div>
 
                 {/*Risk Amount*/}
@@ -302,7 +296,6 @@ class Futures extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <hr className="border-gray-700" />
                 </div>
               </div>
 
@@ -317,20 +310,10 @@ class Futures extends React.Component {
                     </div>
                   </div>
                 </div>
-                {/*Price Difference*/}
-                <div>
-                  <div className="flex">
-                    <div className="flex-1">
-                      <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Price Diff <span className="textSmall ml-1 sm:px-2 w-10 font-bold bg-gray-700 rounded-full">USD</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-extrabold text-white">${this.state.priceDiff.toFixed(4)}</h2>
-                    </div>
-                  </div>
-                </div>
               </div>
               <div className="mx-6">
                 <p className="mt-2 w-full text-xs text-gray-600">Target price for 3:1 risk-reward ratio and price difference between entry and stop loss.</p>
               </div>
-              <hr className="border-gray-700" />
 
               {/* Row 3 - Profit & Exposure */}
               <div className="grid grid-cols-2 gap-2 mb-8">
@@ -359,14 +342,13 @@ class Futures extends React.Component {
 
             {/* Section Three - Additional Info */}
             <div className="w-full rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
-              <div className="w-72 sm:w-96 rounded-lg bg-gray-800 overflow-hidden shadow-lg">
+              <div className="w-72 sm:w-96 rounded-lg bg-dim-700 overflow-hidden shadow-lg">
                 <div className="flex">
                   <div className="flex-1 m-2">
                     <h2 className="px-4 py-2 text-md w-48 font-semibold text-white">Risk Management</h2>
                   </div>
                 </div>
 
-                <hr className="border-gray-700"/>
 
               {/* Row 1 */}
               <div className="grid grid-cols-1 gap-2 mb-8">
@@ -375,13 +357,12 @@ class Futures extends React.Component {
                   <div className="flex">
                     <div className="flex-1">
                       <p className="px-4 ml-2 mt-3 w-48 text-xs text-gray-400">Risk Percentage <span className="textSmall ml-1 px-2 w-10 font-bold bg-gray-700 rounded-full">%</span></p>
-                      <h2 className="px-4 ml-2 w-48 font-extrabold text-xl text-red-300">5.00%</h2>
+                      <h2 className="px-4 ml-2 w-48 font-extrabold text-xl text-red-300">5%</h2>
                       <div className="mx-6">
                         <p className="mt-1 w-full text-xs text-gray-600">Fixed risk percentage applied to every trade for consistent risk management.</p>
                       </div>
                     </div>
                   </div>
-                  <hr className="border-gray-700" />
                 </div>
                 {/*RR Ratio*/}
                 <div>
@@ -394,7 +375,6 @@ class Futures extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <hr className="border-gray-700" />
                 </div>
               </div>
 
