@@ -6,8 +6,8 @@ class Futures extends React.Component {
 
     this.state = {
       margin: 50,
-      entryPrice: 3.1174,
-      slPrice: 3.1380,
+      entryPrice: 3.1380,
+      slPrice: 3.1174,
 
       // Calculated values
       optimalLeverage: 0,
@@ -205,7 +205,7 @@ class Futures extends React.Component {
                       <div className="mx-5">
                         <input
                           className="bg-gray-700 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400"
-                          placeholder="3.1174"
+                          placeholder="3.1380"
                           value={this.state.entryPrice}
                           onChange={this.handleChangeEntryPrice}
                         />
@@ -223,7 +223,7 @@ class Futures extends React.Component {
                       <div className="mx-5">
                         <input
                           className="bg-gray-700 w-full pl-4 rounded h-9 text-white font-bold placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400"
-                          placeholder="3.1380"
+                          placeholder="3.1174"
                           value={this.state.slPrice}
                           onChange={this.handleChangeSlPrice}
                         />
