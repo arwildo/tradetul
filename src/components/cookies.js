@@ -1,8 +1,6 @@
 import React from "react";
 import Footer from "./footer";
 
-import Build from "../assets/img/build.svg";
-
 class Cookies extends React.Component {
   render() {
     return(
@@ -28,7 +26,7 @@ class Cookies extends React.Component {
                     </div>
                   </div>
                   <hr className="border-gray-800" />
-                  
+
                 </div>
               </div>
 
